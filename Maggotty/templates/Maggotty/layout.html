@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-md navbar-dark mb-3" style="background: #138496">
+        <div class="container">            
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'history' %}" class="nav-item nav-link">History</a>
+                    <a href="{% url 'mission' %}" class="nav-item nav-link">Mission</a>
+                    <a href="{% url 'news' %}" class="nav-item nav-link">News</a>
+                    <a href="{% url 'donate' %}" class="nav-item nav-link">Donate</a>
+                </div>
+                <form class="form-inline ml-auto">
+                    <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                    <a href="#" class="nav-item nav-link"style="color:white"><i class="fa fa-search"></i></a>                    
+                </form>
+                <div class="navbar-nav ml-auto">
+                    <a href="#" class="nav-item nav-link" style="color:white">Register</a>
+                    <a href="#" class="nav-item nav-link" style="color:white"><i class='fas fa-user-cog user-icon'></i></a>                    
+                </div>
+            </div>
+        </div>    
+    </nav>
+
+    <!--Page Content-->
+    <div class="container">
+        <div class="row">            
+            <div class="col-md-12">
+                <!--This is where content will be shown as per the page-->                               
+                {% block content %}
+                {% endblock %} 
+            </div>
+        </div>        
+    </div> 
+    <!--Page Content-->
+    
+    <!-- Footer -->  
+    <footer style="padding-top: 2%;">
+        <div class="row"> 
+            <p>
+                <div class="col-md-12 text-md-center">            
+                    <a href="{% url 'feedback' %}" class="text-secondary">Feedback</a> 
+                    <span class="text-muted mx-2">|</span> 
+                    <a href="{% url 'contact' %}" class="text-secondary">Contact us</a>
+                    <span class="text-muted mx-2">|</span> 
+                    <a href="{% url 'about' %}" class="text-secondary">About</a>
+                    <span class="text-muted mx-2">|</span> 
+                    <a href="{% url 'faq' %}" class="text-secondary">FAQs</a>           
+                </div>
+            </p>
+        </div>        
+        <div class="row">
+            <div class="col-md-12 text-md-center text-muted">
+              <!-- Number of visitors hard-coded right now -->
+              <p><small>Number of visitors till date : 2839</small></p> 
+            </div>
+        </div>  
+    </footer>    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
