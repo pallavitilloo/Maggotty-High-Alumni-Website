@@ -1,24 +1,46 @@
-1. Make sure all prerequisites are installed and configured. Please refer to https://code.visualstudio.com/docs/python/tutorial-django#_prerequisites
+# Maggotty High Alumni Website setup
+Steps to set up the project on your computer
 
-2. Run the following command inside your folder to clone the repository on your computer
->> git clone "https://github.com/pallavitilloo/GD.git"
-This will create a folder "GD" in your computer at the location where you ran the command.
+## Prerequisites
 
-3. Open the GD project folder created in Step 2 in Visual Studio Code.
+Make sure all [prerequisites](https://code.visualstudio.com/docs/python/tutorial-django#_prerequisites) are installed and configured.
 
-4. In VS Code, open 'Terminal' and use the following command (as appropriate to your computer) to create a virtual environment named env based on your current interpreter:
->> sudo apt-get install python3-venv   (if required for macOS)
->> python3 -m venv env (for macOS/Linux)
->> python -m venv env (for Windows)
-This should create 'env' folder in your project folder.
+## Clone the repository
+Run the following command inside your folder to clone the repository on your computer
+```
+git clone "https://github.com/pallavitilloo/GD.git"
+```
+This will create a folder "GD" in your computer at the location where you ran the command. Open the folder in Visual Studio Code.
 
-5. In VS Code, go to settings -> Command Palette. Select the option 'Python: Select interpreter'. In the list, select the interpreter under ".env\Scripts\Python.exe"
-The selected environment appears at the bottom left side of the VS Code status bar, and notice the "(env)" indicator that tells you that you're using a virtual environment
+## Create virtual environment
+In VS Code, open 'Terminal' and use the following command (as appropriate to your computer) to create a virtual environment named env based on your current interpreter:
+```
+# macOS
+sudo apt-get install python3-venv    # if required
+python3 -m venv env
 
-6. Install Django in the virtual environment by running one of the following commands in the VS Code Terminal:
->> python -m pip install django
-It might show message "Requirement already satisfied...".
+# Windows
+python -m venv env
+```
+This will create ENV folder in your project folder.
 
-7. Start the Django's development server using the command 
->> python manage.py runserver
+## Select Interpreter
+In VS Code, go to Settings -> Command Palette. Select the option 'Python: Select interpreter'. Select the interpreter under ".env\Scripts\Python.exe".
+```
+Note that the selected environment appears at the bottom left side of the VS Code status bar. Notice the "(env)" indicator that tells you that you're using a virtual environment
+```
+
+## Check Django, if installed
+Install Django in the virtual environment by running one of the following commands in the VS Code Terminal. It should show a message "Requirement already satisfied...".
+```
+python -m pip install django
+```
+
+
+## Start the server
+Start the Django's development server using the command 
+```
+python manage.py runserver
+```
+
 
