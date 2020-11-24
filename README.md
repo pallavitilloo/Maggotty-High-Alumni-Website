@@ -40,7 +40,7 @@ python -m pip install django
 ## Start the server
 Start the Django's development server using the command 
 ```
-python manage.py runserver
+python manage.py runserver 
 ```
 
 
