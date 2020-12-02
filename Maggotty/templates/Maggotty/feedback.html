@@ -4,4 +4,18 @@ Feedback
 {% endblock %}
 {% block content %}
 <p>Please provide your feedback for the Maggotty High Alumni website.</p>
+<div class="w3-center w3-padding-64" id="feedback">
+    <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Feedback</span>
+  </div>
+<form class="w3-container" action="/action_page.php" target="_blank">
+    <div class="w3-section">
+      <label>Provide feedback below</label>
+      <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="Name" required>
+    </div>
+    
+    </div>
+    <button type="submit" class="w3-button w3-block w3-black">Send</button>
+  </form>
+
+</div>
 {% endblock %}
