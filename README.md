@@ -49,5 +49,4 @@ pip3 install django-crispy-forms
 python -m pip install Pillow
 python manage.py migrate  
 ```
-python manage.py migrate
 
