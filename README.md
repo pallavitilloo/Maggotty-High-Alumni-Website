@@ -43,4 +43,11 @@ Start the Django's development server using the command
 python manage.py runserver 
 ```
 
+## To run you will need to install additional packages
+```
+pip3 install django-crispy-forms
+python -m pip install Pillow
+python manage.py migrate  
+```
+python manage.py migrate
 
