@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>{% block title %}{% endblock %}</title>
-    {% load static %}    
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'Maggotty/style.css' %}">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bgPage">
     <!-- Header -->
-    <nav class="navbar navbar-expand-md navbar-dark mb-3" style="background: #138496">
-        <div class="container">            
+    <nav class="navbar navbar-expand-md navbar-dark mb-3">
+        <div class="container">    
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'Maggotty/MHLogo_tran.png' %}" height="50">
+              </a>        
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,15 +26,15 @@
                     <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                     <a href="{% url 'history' %}" class="nav-item nav-link active" >History</a>
                     <a href="{% url 'mission' %}" class="nav-item nav-link active">Mission</a>
-                    <a href="{% url 'news' %}" class="nav-item nav-link">News</a>
-                    <a href="{% url 'donate' %}" class="nav-item nav-link">Donate</a>
+                    <a href="{% url 'news' %}" class="nav-item nav-link active">News</a>
+                    <a href="{% url 'donate' %}" class="nav-item nav-link active">Donate</a>
                 </div>
                 <form class="form-inline ml-auto">
                     <input type="text" class="form-control mr-sm-2" placeholder="Search">
                     <a href="#" class="nav-item nav-link"style="color:white"><i class="fa fa-search"></i></a>                    
                 </form>
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link" style="color:white">Register</a>
+                    <a href="{% url 'register'%}" class="nav-item nav-link" style="color:white">Register</a>
                     <a href="#" class="nav-item nav-link" style="color:white"><i class='fas fa-user-cog user-icon'></i></a>                    
                 </div>
             </div>
