@@ -3,5 +3,16 @@
 News page
 {% endblock %}
 {% block content %}
-<p>Get updates on the latest news about MHAA</p>
+<p>Upcoming News is posted here</p>       
+<div class="container">
+    <div class="row row-content align-items-cneter"></div>
+    <div class="col col-sm order-sm-first col-md">
+        <div class="media">
+    <img class="d-flex mr-3  img-thumbnail align-self-center"
+     src="{% static 'Maggotty/MHLogo_tran.png' %}" alt="Updates about Fall semester 2021">
+     <div class="media-body">
+        <h2 class="mt-0"> Updates about Fall semester 2021</h2>
+        <p class="text-justify">The University announced this week that the spring 2021 semester will begin February 8, three weeks later than originally planned, and there will be no spring break. The term will end the week of Mar 24.     <p><a href="#" target="_blank" class="btn">Know more</a></p>
+    </div>
+    </div>
 {% endblock %}
