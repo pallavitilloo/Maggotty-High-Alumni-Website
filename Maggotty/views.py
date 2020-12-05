@@ -48,7 +48,7 @@ def register(request):
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-            messages.success(request, f'Account created for {user}!')
+            messages.success(request, f'{user}')
             return redirect('home')
             return redirect('login')
             if 'profile_pic' in request.FILES:

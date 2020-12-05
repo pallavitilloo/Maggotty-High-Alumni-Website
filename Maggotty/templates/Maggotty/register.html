@@ -5,23 +5,34 @@ User Registration
 {% endblock %}
 {% block content %}
 {% load static %}
-<p>Please fill the form to create an account !!!</p>
-<div class="container">
-    <div class="jumbotron">
-        {% if registered %}
-        <h1>Thank you for registering!</h1>
-        {% else %}
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            {{ user_form|crispy }}
-            <input type="submit" name="" value="Register">
-        </form>
-        <div class="exists">
-            <small class="chkexists">
-                Already have an account? <a class="login" href="#">Login</a>
-            </small>
+<div class="container" style="padding-top:30px">
+    <div class="row">
+        <div class="col-md-5">
+            {% if registered %}
+            <h1>Thank you for registering!</h1>
+            {% else %}            
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{ user_form|crispy }}
+                <br/>
+                <input type="submit" class="btn" name="" value="Register">
+            </form>
+            <br/>
+            <div class="exists">
+                <small class="chkexists">
+                    Already have an account? Click <a class="redLink" href="{% url 'login' %}">here</a> to login
+                </small>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
+        <div class="col-md-1">            
+        </div>
+        <div class="col-md-6" style="padding-top:20px">
+            <h1>Register now to get multiple added benefits!</h1>
+            <br/>
+            <p>Sign up for events, create your own events to participate, upload your pictures, stories and much more...</p>            
+        </div>
+        
     </div>
 </div>
 {% endblock %}

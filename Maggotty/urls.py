@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("home/", views.home, name="home"),
     path("Maggotty/<name>", views.hello_there, name="hello_there"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),

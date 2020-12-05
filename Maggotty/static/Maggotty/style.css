@@ -9,6 +9,14 @@
     background-color: #7a212e !important;   
     color:white !important;
 }
+.redLink{
+    color:#7a212e !important;
+}
+
+.blackLink{
+    color: black !important;
+}
+
 /* .navbar-nav{
     color:white;
 }

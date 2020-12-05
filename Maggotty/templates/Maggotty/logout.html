@@ -1,0 +1,16 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+User Registration
+{% endblock %}
+{% block content %}
+{% load static %}
+<h2 style="padding-top: 20px;padding:bottom:50px;">You have signed out successfully !</h2>
+<h2>Please close the browser to complete the logout process.</h2>
+<br/>
+<div class="exists">
+    <small class="chkexists">
+        Want to go back again?! Click <a class="login redLink" href="{% url 'login' %}">here</a> to login
+    </small>
+</div>
+
+{% endblock %}

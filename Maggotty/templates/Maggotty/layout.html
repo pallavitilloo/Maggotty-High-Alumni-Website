@@ -34,8 +34,24 @@
                     <a href="#" class="nav-item nav-link"style="color:white"><i class="fa fa-search"></i></a>                    
                 </form>
                 <div class="navbar-nav ml-auto">
-                    <a href="{% url 'register'%}" class="nav-item nav-link" style="color:white">Register</a>
-                    <a href="#" class="nav-item nav-link" style="color:white"><i class='fas fa-user-cog user-icon'></i></a>                    
+                    {% if user.is_authenticated %}
+                    <div><p style="color:white"></p></div>
+                    <div class="btn-group">                                                                        
+                        <button type="button" class="btn btn-warning"><i class='fas fa-user-cog user-icon'></i> Welcome, {{ user.username }}</button>
+                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">                          
+                          <a class="dropdown-item" href="#">My cart</a>
+                          <a class="dropdown-item" href="#">Preferences</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'logout' %}"><i class='fa fa-power-off' aria-hidden='true'></i>  Logout</a>
+                        </div>                        
+                      </div>
+                    {% else %}
+                        <a href="{% url 'register'%}" class="nav-item nav-link" style="color:white">Register</a>
+                        <a href="{% url 'login'%}" class="nav-item nav-link" style="color:white">Login</a>
+                    {% endif %}                    
                 </div>
             </div>
         </div>    
@@ -45,9 +61,15 @@
     <div class="container">
         <div class="row">            
             <div class="col-md-12">
-                <!--This is where content will be shown as per the page-->                               
-                {% block content %}
-                {% endblock %} 
+                  {% if messages %}
+                  {% for message in messages %}  
+                  <medium class="redLink">User account created successfully for <i class="blackLink">{{ message }}</i>. <a class="redLink" href="{% url 'login' %}">Login</a> now!</medium>
+                  <br/>
+                  {% endfor %}                  
+                  {% endif %}                           
+                  <br/>          
+                  {% block content %}
+                  {% endblock %} 
             </div>
         </div>        
     </div> 
@@ -57,21 +79,21 @@
     <footer style="padding-top: 2%;">
         <div class="row"> 
             <p>
-                <div class="col-md-12 text-md-center">            
-                    <a href="{% url 'feedback' %}" class="text-secondary" href="./feedback.html" >Feedback</a> 
-                    <span class="text-muted mx-2">|</span> 
-                    <a href="{% url 'contact' %}" class="text-secondary">Contact us</a>
-                    <span class="text-muted mx-2">|</span> 
-                    <a href="{% url 'about' %}" class="text-secondary">About</a>
-                    <span class="text-muted mx-2">|</span> 
-                    <a href="{% url 'faq' %}" class="text-secondary">FAQs</a>           
+                <div class="col-md-12 text-md-center col-s-3">            
+                    <a href="{% url 'feedback' %}" class="redLink" href="./feedback.html" >Feedback</a> 
+                    <span class="redLink">|</span> 
+                    <a href="{% url 'contact' %}" class="redLink">Contact us</a>
+                    <span class="redLink">|</span> 
+                    <a href="{% url 'about' %}" class="redLink">About</a>
+                    <span class="redLink">|</span> 
+                    <a href="{% url 'faq' %}" class="redLink">FAQs</a>           
                 </div>
             </p>
         </div>        
         <div class="row">
             <div class="col-md-12 text-md-center text-muted">
               <!-- Number of visitors hard-coded right now -->
-              <p><small>Number of visitors till date : 2839</small></p> 
+              <p><small class="redLink">Number of visitors till date : 2839</small></p> 
             </div>
         </div>  
     </footer>    

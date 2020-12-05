@@ -1,0 +1,30 @@
+{% extends "Maggotty/layout.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+User Login
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container">     
+    <div class="row" style="padding-top: 5%; padding-bottom:10%">
+        <div class="col-md-4">
+            <form enctype="multipart/form-data" method="POST">                                
+                {% csrf_token %}
+                {{ form|crispy }} 
+                <input type="submit" class="btn" name="" value="Login">                               
+            </form>           
+            
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <h1>Sign in to create events, make donations, contribute and do much more!</h1>  
+            <br/>     
+            <div class="exists">
+                <small>
+                    Don't have an account? <a class="login redLink" href="{% url 'register' %}">Create one</a>
+                </small>
+            </div>
+        </div>
+    </div>            
+</div>
+{% endblock %}
