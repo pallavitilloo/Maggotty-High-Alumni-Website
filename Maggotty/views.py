@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from Maggotty.models import Event
+from django.db import models
 
 def home(request):
     return render(request, "Maggotty/home.html")
@@ -67,8 +69,6 @@ def register(request):
                            'registered': registered})
 
     
-
-
 def hello_there(request, name):
     
     return render(
@@ -79,5 +79,17 @@ def hello_there(request, name):
             'date': datetime.now()
         }
     )
+
+def event(request):    
+    if request.method == 'POST':
+        if request.POST.get('title') and request.POST.get('content'):
+            post=Event()            
+            post.title= request.POST.get('title')
+            post.content= request.POST.get('content')
+            post.save()            
+            return render(request, 'Maggotty/event.html')  
+
+    else:
+        return render(request,'Maggotty/event.html')
 
     

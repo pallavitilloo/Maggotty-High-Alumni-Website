@@ -5,5 +5,15 @@ Create a new event
 {% endblock %}
 {% block content %}
 {% load static %}
-<p>Please fill the details for the event you want to create</p>
+{% if user.is_authenticated %}
+<form action="" method="POST">
+    {% csrf_token %}
+    Title: <input type="text" name="title"/><br/>
+    Content: <br/>
+    <textarea cols="35" rows="8" name="content">
+    </textarea><br/>
+    <input type="submit" value="Post"/>
+</form>
+<br/>
+{% endif %}
 {% endblock %}
