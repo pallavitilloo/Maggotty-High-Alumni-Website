@@ -1,0 +1,38 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Events page
+{% endblock %}
+{% block content %}
+{% load static%}
+<div class="container">
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <medium>
+                <a class="redLink" href="{% url 'eventlist' %}">Back to previous page</a>
+            </medium>
+        <hr/>   
+
+        </div>  
+    </div>    
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <a href="#" class="redLink"><h3 class="mt-0"> MHAA 2013 Dinner Dance</h3></a>
+            <p class="d-none d-sm-block">December 7, 2013<br/>Richie Rich Place and Banquet Hall
+                <br/>110-19 Atlantic Ave. Queens, NY 11418</p>
+            <p style="text-align: justify;">The event held at Richie Rick Place and Banquet Hall was held on December 7, 2013. Present at this meeting were 
+                Veronica Blake-DeWalt, Uriah Chambers,  Allison Johnson-Russel, Hubert Johnson, 
+                Clarence Jones, Orrett McNeil, Sheila McCormack-Vanenburg, Beverkyn Smith, Bradley Thompson, Kie Wright.
+                Between June 2009 and May 2011 sporadic meetings were held at the Mona Prep Academy at South Conduit Ave, Roachdale, 
+                Queens. In early 2011 the Association was joined by such Alumni as Valrie Samuels, 
+                Homer Duhaney, Elton Hanson, Lorane Phillips, and Olive Brown, all of whom breathed new life into the Association. </p>            
+        </div> 
+    </div>  
+    <br/> 
+    <h4>Event Pictures</h4>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'Maggotty/MHAAMembers1.png' %}">
+        </div>        
+    </div>
+</div>               
+{% endblock %}
