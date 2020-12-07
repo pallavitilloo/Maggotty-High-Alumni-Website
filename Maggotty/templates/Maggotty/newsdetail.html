@@ -1,0 +1,33 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Events page
+{% endblock %}
+{% block content %}
+{% load static%}
+<div class="container">
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <medium>
+                <a class="redLink" href="{% url 'news' %}">Back to previous page</a>
+            </medium>
+        <hr/>   
+
+        </div>  
+    </div>    
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3 class="mt-0"> Updates about Spring alumni meetings</h3>
+            <p class="d-none d-sm-block">October 2, 2020<br/>
+            <p style="text-align: justify;">The Spring alumni meet for 2021 will be held at Richie Rick Place and Banquet Hall. The School 
+                announced this week that the spring 2021 classes will begin February 8, 
+                three weeks later than originally planned, and there will be no spring break. The term will end the week of Mar 24. </p>            
+        </div> 
+    </div>  
+    <br/> 
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'Maggotty/Updates about spring classes.jpg' %}">
+        </div>        
+    </div>
+</div>               
+{% endblock %}

@@ -86,6 +86,10 @@ def eventinfo(request):
 def eventdetails(request):
     return render(request, "Maggotty/eventdetails.html")
 
+def newsdetail(request):
+    return render(request, "Maggotty/newsdetail.html")
+
+
 def hello_there(request, name):
     
     return render(

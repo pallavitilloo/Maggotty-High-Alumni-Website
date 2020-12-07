@@ -27,4 +27,5 @@ urlpatterns = [
     path("mycart/", views.mycart, name="mycart"),
     path("eventinfo/", views.eventinfo, name="eventinfo"),
     path("eventdetails/", views.eventdetails, name="eventdetails"),
+    path("newsdetail/", views.newsdetail, name="newsdetail"),
 ]
