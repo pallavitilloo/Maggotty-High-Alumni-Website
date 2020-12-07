@@ -6,51 +6,40 @@ Upload content
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
-<form>
-    <div class="form-group row">        
-        <h3>Contribute your story, pictures and more with your fellow classmates.</h3>            
+<div class="container">
+    <div class="row" style="padding-bottom: 15px;">
+        <h4>Share your pictures or story or news...</h4> 
     </div>
-    <br/>
-    <div class="form-group row">
-        <label for="eventname" class="col-md-2 col-form-label">Event Name</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Something like 'Class of 2020 Alumni meet'...">
+    <div class="row" style="padding-bottom:10px">        
+        <input type="text" class="form-control" id="usr" placeholder="Title of your post">
+            <br/>          
+    </div>
+    <div class="row">
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+    </div>
+    
+    <div class="row">
+        <textarea class="form-control" rows=10 id="comment" placeholder="Write something here..."></textarea> 
+    </div>
+    <div class="row" style="height:20px"></div>
+    
+    <div class="row">
+        <br/>
+        <hr/>
+        <input class="btn" style="width:150px" type="submit" value="Post">
+    </div>
+</div>
+{% else %}
+<div class="jumbotron">
+    <h5><i class="fas fa-exclamation-triangle" style="font-size:36px;color:#7a212e"></i>  Sorry, you do not have access here! <br/>
+        <br/>
+        Please <a href="{% url 'login' %}" class="redLink">login</a> with your registered username and password to access this page.
+        <br/><br/>In case you haven't already registered, please <a href="{% url 'register' %}" class="redLink">register</a> on the website
+        and get full access to contribute, donate, participate and do much more!</h5>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="eventdesc" class="col-md-2 col-form-label">Event Description</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="eventdesc" name="eventdesc" placeholder="Some description about your event...">
-        </div>
-    </div>
-</form>
-<div class="form-group row">
-    <label for="eventDate" class="col-12 col-md-2 col-form-label">Start Date</label>
-    <div class="col-5 col-md-4">
-        <input type="text" class="form-control" id="stdate" name="stdate" placeholder="MM/DD/YYYY">
-    </div>
-    <label for="eventDate" class="col-12 col-md-2 col-form-label">End Date</label>
-    <div class="col-5 col-md-4">
-        <input type="text" class="form-control" id="stdate" name="stdate" placeholder="MM/DD/YYYY">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="location" class="col-md-2 col-form-label">Location</label>
-    <div class="col-md-10">
-        <input type="text" class="form-control" id="location" name="location" placeholder="Where will the event take place?">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="price" class="col-md-2 col-form-label">Ticket Price</label>
-    <div class="col-md-10">
-        <input type="text" class="form-control" id="price" name="price" placeholder="Enter the price amount">
-    </div>        
-</div>
-<br/>
-<div class="form-group row">    
-    <div class="col-md-12" style="text-align: center;">
-        <input onclick="javascript:alert('Event created!');" class="btn" type="submit" class="form-control" id="price" name="price" value="   Submit   ">
-    </div>        
-</div>
+
 {% endif %}
 {% endblock %}

@@ -77,6 +77,9 @@ def eventlist(request):
 def contribute(request):
     return render(request, "Maggotty/contribute.html")
 
+def mycart(request):
+    return render(request, "Maggotty/mycart.html")
+
 def hello_there(request, name):
     
     return render(
