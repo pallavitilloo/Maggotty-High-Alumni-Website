@@ -68,7 +68,15 @@ def register(request):
                            'profile_form': profile_form,
                            'registered': registered})
 
-    
+def event(request):
+    return render(request, "Maggotty/event.html")
+
+def eventlist(request):
+    return render(request, "Maggotty/eventlist.html")
+
+def contribute(request):
+    return render(request, "Maggotty/contribute.html")
+
 def hello_there(request, name):
     
     return render(
@@ -80,16 +88,16 @@ def hello_there(request, name):
         }
     )
 
-def event(request):    
-    if request.method == 'POST':
-        if request.POST.get('title') and request.POST.get('content'):
-            post=Event()            
-            post.title= request.POST.get('title')
-            post.content= request.POST.get('content')
-            post.save()            
-            return render(request, 'Maggotty/event.html')  
+# def event(request):    
+#     if request.method == 'POST':
+#         if request.POST.get('title') and request.POST.get('content'):
+#             post=Event()            
+#             post.title= request.POST.get('title')
+#             post.content= request.POST.get('content')
+#             post.save()            
+#             return render(request, 'Maggotty/event.html')  
 
-    else:
-        return render(request,'Maggotty/event.html')
+#     else:
+#         return render(request,'Maggotty/event.html')
 
     

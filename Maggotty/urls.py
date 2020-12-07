@@ -22,4 +22,6 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name='Maggotty/logout.html'), name="logout"),
     path("admin/", admin.site.urls),
     path("event/", views.event, name="event"),
+    path("eventlist/", views.eventlist, name="eventlist"),
+    path("contribute/", views.contribute, name="contribute"),
 ]
