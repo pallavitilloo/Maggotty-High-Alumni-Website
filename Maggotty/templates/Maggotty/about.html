@@ -3,9 +3,34 @@
 About us
 {% endblock %}
 {% block content %}
-<div class="jumbotron">            
+{% load static %}
+<div class="jumbotron" style="background-color: white;">            
     <div class="img-title">
-        <h2>About Maggotty High Alumni Association</h2>
-        <p class="text-justify">Centre for Alumni Affairs in the Maggotty High School connects all Maggotty High Alumni across the globe, initiating research/academic collaboration with universities and organizations and other outreach activities. Maggotty High is proud to have more than 10000 students as its global brand ambassadors. Maggotty High Alumini makes all-out efforts to get them involved in the all-round development and growth of the Institute. It supports the Institute’s mission by way of continually opening opportunities that strengthens the mutually beneficial bond between the institute and its alumni. This center helps to promote and encourage the alumni to disseminate professional knowledge through seminars and interaction with the students and faculty. </div>
+        <h2>About Maggotty High School</h2>
+        <br/>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="row">
+                    <div class="col text-center">
+                        <img src="{% static 'Maggotty/MHAAPrin_small.jpg' %}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center" style="font-size: small;">
+                        M.C. Thompson
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center" style="font-size: small;">
+                        Served as Principal 1971-1993
+                    </div>
+                </div>                
+            </div>   
+            <div class="col-md-9">
+                <p class="text-justify" style="font-size: larger;">Centre for Alumni Affairs in the Maggotty High School connects all Maggotty High Alumni across the globe, initiating research/academic collaboration with universities and organizations and other outreach activities. Maggotty High is proud to have more than 10000 students as its global brand ambassadors. Maggotty High Alumini makes all-out efforts to get them involved in the all-round development and growth of the Institute. It supports the Institute’s mission by way of continually opening opportunities that strengthens the mutually beneficial bond between the institute and its alumni. This center helps to promote and encourage the alumni to disseminate professional knowledge through seminars and interaction with the students and faculty. </div>
+            </div>
+        </div>
+        
+        
 </div> 
 {% endblock %}

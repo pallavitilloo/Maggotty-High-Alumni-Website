@@ -1,0 +1,46 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Events page
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h2>
+                These are the events scheduled for the near future. Register now or create your own event <a class="redLink" href="{% url 'event' %}">here</a>!
+            </h2>
+            <br/>   
+        </div>  
+    </div>
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3 class="mt-0"> MHAA 2013 Dinner Dance</h3>
+            <p class="d-none d-sm-block">December 7, 2013</p>  
+            <p class="d-none d-sm-block">Richie Rich Place and Banquet Hall</p>
+            <p class="d-none d-sm-block">110-19 Atlantic Ave. Queens, NY 11418</p>
+            <!-- <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p> -->
+        </div> 
+    </div>  
+    <br/>        
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3 class="mt-0"> MHAA 2012 Dinner Dance</h3>
+            <p class="d-none d-sm-block">December 1, 2012</p>  
+            <p class="d-none d-sm-block">Richie Rich Place and Banquet Hall</p>
+            <p class="d-none d-sm-block">110-19 Atlantic Ave. Queens, NY 11418</p>
+            <!-- <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p> -->
+        </div> 
+    </div> 
+    <br/>
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3 class="mt-0"> MHAA 2011 Dinner Dance</h3>
+            <p class="d-none d-sm-block">December 10, 2011</p>  
+            <p class="d-none d-sm-block">Sunset Hall</p>
+            <p class="d-none d-sm-block">106 First Street, Mount Vernon, NY</p>
+            <!-- <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p> -->
+        </div> 
+    </div>
+</div>               
+{% endblock %}
