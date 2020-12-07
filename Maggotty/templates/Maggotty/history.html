@@ -3,32 +3,36 @@
 History
 {% endblock %}
 {% block content %}
+{% load static %}
 <div class="jumbotron">            
     <div class="img-title">
-        <h2>History of the Maggotty High Alumni Association</h2>
-        <p class="text-justify"> Founded on a strong belief in accessible education, Maggotty High School is proud to bring academia to all corners of the country through our newly online program. Each year our student community grows and strengthens, and our alumni graduate as passionate and curious learners.
-
-
-
-            Regardless of where they are located, our students receive customized, high quality education from licensed teachers who are always available through online channels. We’re here to provide the flexible learning experience you need.
-            
-            ​
-            
-            Maggotty High School is a co-educational facility located in North-Western St. Elizabeth. The school began its impact on the community of Maggotty since its inception in 1971.
-            
-            The institution has undergone many changes, moving from a Junior Secondary School in 1971 to new Secondary in 1974. The school has now achieved High School status since 1988.
-            
-            The institution presently has in its employ approximately ninety-two (92) academic staff members, inclusive of one 
-            <</br>
-            (1) Principal
-            </br> (2) Vice-Principals 
-        </br>
-             (3) Guidance Counsellors
-    </br>
-              (1) Dean of Discipline.
-</br>
-            ​
-            
-            Maggotty High School boasts a population of approximately two thousand students. In the year 2017, the shift system on which the school operated since its inception was discontinued and now the whole-day school system sees school commencing at 8:00am to 3:00pm with the exception of operations ending at 2:00pm on a Friday. Maggotty High School strives to attain excellence in all aspects of its activities and endeavours. </div>
+        <h2>Our History</h2>
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-md-6" style="padding-top: 20px;font-size: larger;">
+                <p class="text-justify">The inaugral meeting was held at the elegant Jamaican restaurant, The Door, 
+                    located at 163-67 Baisley Blvd.,Jamaica, Queens, NY 11434. Present at this meeting were Veronica Blake-DeWalt, 
+                    Uriah Chambers,  Allison Johnson-Russel, Hubert Johnson, Clarence Jones, Orrett McNeil, Sheila McCormack-Vanenburg, 
+                    Beverkyn Smith, Bradley Thompson, Kie Wright. Between June 2009 and May 2011 sporadic meetings were held at the Mona 
+                    Prep Academy at South Conduit Ave, Roachdale, Queens. In early 2011 the Association was joined by such Alumni as Valrie 
+                    Samuels, Homer Duhaney, Elton Hanson, Lorane Phillips, and Olive Brown, all of whom breathed new life into the Association.
+                </p>
+            </div>
+            <div class="col-md-6" style="text-align: center;padding:5px;">
+                <img src="{% static 'Maggotty/MHAAMembers2.png' %}">
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col text-center">
+                <p style="font-size: x-large;">Founders of the Maggotty High Alumni Association</p>
+            </div>            
+        </div>        
+        <div class="row">
+            <div class="col-md-12"  style="text-align: center;border-style:groove;padding:5px;background-color: #7a212e;">
+                <img src="{% static 'Maggotty/MHAAMembers1.png' %}">
+            </div>                
+        </div>        
+    </div>        
 </div> 
 {% endblock %}
