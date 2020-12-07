@@ -7,33 +7,39 @@ Events page
 <div class="container">
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
-            <h2>
-                These are the events scheduled for the near future. Register now or create your own event <a class="redLink" href="{% url 'event' %}">here</a>!
-            </h2>
+            <h3>
+                These are the past Maggotty High Alumni Association events.<br/>
+                
+            </h3>
+            <p>
+                To attend an event, check out our <a href="{% url 'eventinfo' %}" class="redLink">Upcoming events</a>.
+                If you wish to create an event, please check out <a class="redLink" href="{% url 'event' %}">this</a> link.
+            </p>
             <br/>   
         </div>  
-    </div>
+    </div>    
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
-            <h3 class="mt-0"> Class of 2018 Alumni Meet</h3>
-            <p class="d-none d-sm-block">The University announced this week that the spring 2021 semester will begin February 8, three weeks later than originally planned, and there will be no spring break. The term will end the week of Mar 24.  </p>  
-            <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p>
+            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2013 Dinner Dance</h3></a>
+            <p class="d-none d-sm-block">December 7, 2013<br/>Richie Rich Place and Banquet Hall
+                <br/>110-19 Atlantic Ave. Queens, NY 11418</p>            
         </div> 
     </div>  
     <br/>        
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
-            <h3 class="mt-0">Thanksgiving Lunch</h3>
-            <p class="text-justify">Students came together on a day without classes to celebrate University Day. Under a beautiful autumn sky on the Student Center Quad, students enjoyed ice cream, created with sidewalk chalk, danced, played games and showed off their Red Hawk Pride, a one-day break that brought the campus together – outdoors and socially distanced –  during a fall semester like no other.
-            <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p>
+            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2012 Dinner Dance</h3></a>
+            <p class="d-none d-sm-block">December 1, 2012<br/>Richie Rich Place and Banquet Hall
+                <br/>110-19 Atlantic Ave. Queens, NY 11418</p> 
         </div> 
     </div> 
     <br/>
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
-            <h3 class="mt-0">Christmas eve - The ball drops!</h3>
-            <p class="text-justify">Starting October 13, the building began hosting Maggotty High Central 1-Stop, the University’s one-stop student services center for all current and prospective students. Maggotty High Central is located on the 2nd floor main entrance. Students are encouraged to stop by for assistance and support concerning registration, billing, financial aid or any other questions.   
-            <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p>
+            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2011 Dinner Dance</h3></a>
+            <p class="d-none d-sm-block">December 10, 2011<br/>Sunset Hall
+                <br/>106 First Street, Mount Vernon, NY</p>            
+            <!-- <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p> -->
         </div> 
     </div>
 </div>               

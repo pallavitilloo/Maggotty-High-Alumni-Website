@@ -80,6 +80,12 @@ def contribute(request):
 def mycart(request):
     return render(request, "Maggotty/mycart.html")
 
+def eventinfo(request):
+    return render(request, "Maggotty/eventinfo.html")
+
+def eventdetails(request):
+    return render(request, "Maggotty/eventdetails.html")
+
 def hello_there(request, name):
     
     return render(

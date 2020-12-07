@@ -25,4 +25,6 @@ urlpatterns = [
     path("eventlist/", views.eventlist, name="eventlist"),
     path("contribute/", views.contribute, name="contribute"),
     path("mycart/", views.mycart, name="mycart"),
+    path("eventinfo/", views.eventinfo, name="eventinfo"),
+    path("eventdetails/", views.eventdetails, name="eventdetails"),
 ]
