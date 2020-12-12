@@ -1,16 +1,57 @@
 import re
 from datetime import datetime
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
-from Maggotty.forms import UserForm, UserProfileInfoForm
+from django.shortcuts import redirect, render, get_object_or_404
+from Maggotty.forms import UserForm, UserProfileInfoForm, CreateEventForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Maggotty.models import Event
 from django.db import models
+from django.views.generic import ListView, DetailView
+
+class IndexView(ListView):
+    template_name = 'Maggotty/index.html'
+    context_object_name = 'event_list'
+
+    def get_queryset(self):
+        return Event.objects.all()
+
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'Maggotty/eventdetails.html'
+
+def create(request):
+    if request.method == 'POST':
+        form = CreateEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    form = CreateEventForm()
+
+    return render(request,'Maggotty/event.html',{'form': form})
+
+def edit(request, pk, template_name='Maggotty/edit.html'):
+    event = get_object_or_404(Event, pk=pk)
+    # form = CreateEventForm(request.POST or None, instance=post)
+    form = CreateEventForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, template_name, {'form':form})
+
+def delete(request, pk, template_name='Maggotty/confirm_delete.html'):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method=='POST':
+        event.delete()
+        return redirect('home')
+    return render(request, template_name, {'object':event})
+
+def eventdetails(request):
+    return render(request, "Maggotty/eventdetails.html")
 
 def home(request):
     return render(request, "Maggotty/home.html")
@@ -83,8 +124,6 @@ def mycart(request):
 def eventinfo(request):
     return render(request, "Maggotty/eventinfo.html")
 
-def eventdetails(request):
-    return render(request, "Maggotty/eventdetails.html")
 
 def newsdetail(request):
     return render(request, "Maggotty/newsdetail.html")

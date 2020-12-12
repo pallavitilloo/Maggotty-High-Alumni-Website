@@ -1,5 +1,5 @@
 from django import forms
-from Maggotty.models import UserProfileInfo
+from Maggotty.models import Event, UserProfileInfo
 from django.contrib.auth.models import User
 
 
@@ -15,3 +15,8 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
         fields = ('portfolio_site', 'profile_pic')
+
+class CreateEventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = "__all__"
