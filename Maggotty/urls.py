@@ -21,10 +21,11 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name='Maggotty/logout.html'), name="logout"),
     path("admin/", admin.site.urls),    
     path("contribute/", views.contribute, name="contribute"),
-    path("mycart/", views.mycart, name="mycart"),    
-    path("alleventslist/", views.alleventslist, name="alleventslist"),
-    path("upcomingevents/", views.upcomingevents, name="upcomingevents"),
-    path("createevent/", views.createevent, name='createevent'),
+    path("contributions/", views.contributions, name='contributions'),
+    path("polls", views.polls, name="polls"),
+    path("approved_polls", views.approvedPolls, name="approved_polls"),
+    path("mycart/", views.mycart, name="mycart"),
+    path("eventinfo/", views.eventinfo, name="eventinfo"),
     path("eventdetails/", views.eventdetails, name="eventdetails"),
     path("newsdetail/", views.newsdetail, name="newsdetail")
 ]

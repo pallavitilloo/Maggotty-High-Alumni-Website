@@ -1,0 +1,32 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Alumni Contributions
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3>
+                These are the past Maggotty High Alumni Association Contributions.<br/>
+                
+            </h3>
+            <p>
+                If you wish to create a contribution, please check out <a class="redLink" href="{% url 'contribute' %}">this</a> link.
+            </p>
+            <br/>   
+        </div>  
+    </div>    
+    <!-- show all uploaded contributions -->
+    {% for contribution in contributions %}
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <a href="#" class="redLink"><h3 class="mt-0">{{ contribution.title }}</h3></a>
+            <h3><img src="{{ contribution.upload.url }}" alt="" width="100%" ></h3>
+            <p class="d-none d-sm-block">{{ contribution.description }}</p>            
+        </div> 
+    </div> 
+    <br/> 
+    {% endfor %}
+</div>               
+{% endblock %}

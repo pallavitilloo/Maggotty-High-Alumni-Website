@@ -134,3 +134,10 @@ STATICFILES_DIRS = (
     # this assumes your static contents is in <your_project>/static/
     os.path.join(BASE_DIR, 'static'),
 )
+
+
+
+# media files to be uploaded
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
