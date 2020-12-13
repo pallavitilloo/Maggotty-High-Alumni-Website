@@ -7,8 +7,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("home/", views.home, name="home"),
-    # path("Maggotty/<name>", views.hello_there, name="hello_there"),
+    path("home/", views.home, name="home"),    
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
     path("donate/", views.donate, name="donate"),
@@ -27,7 +26,5 @@ urlpatterns = [
     path("upcomingevents/", views.upcomingevents, name="upcomingevents"),
     path("createevent/", views.createevent, name='createevent'),
     path("eventdetails/", views.eventdetails, name="eventdetails"),
-    path("newsdetail/", views.newsdetail, name="newsdetail"),
-    # path('newevent/', views.IndexView.as_view(), name='index'),
-    # path('events/<int:pk>/', views.EventDetailView.as_view(), name='detail')
+    path("newsdetail/", views.newsdetail, name="newsdetail")
 ]
