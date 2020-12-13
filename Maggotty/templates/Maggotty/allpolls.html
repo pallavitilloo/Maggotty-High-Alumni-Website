@@ -1,0 +1,35 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Approved Opinon Polls
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <h3>
+                These are the past Maggotty High Alumni Association User Opinion Polls.<br/>
+                
+            </h3>
+            <p>
+                If you wish to create a poll, please check out <a class="redLink" href="{% url 'polls' %}">this</a> link.
+            </p>
+            <br/>   
+        </div>  
+    </div>    
+    <!-- show all uploaded contributions -->
+    {% if polls %}
+    {% for poll in polls %}
+    <div class="row row-content align-items-center">
+        <div class="col col-sm order-sm-first col-md">
+            <a href="#" class="redLink"><h6 class="mt-0">{{ poll.username }}</h6></a>
+            <p class="d-none d-sm-block">{{ poll.opinion }}</p>            
+        </div> 
+    </div> 
+    <br/> 
+    {% endfor %}
+    {% else %}
+        <h3 style="text-align: center;">No polls have been approved yet...Please try again later</h3>
+    {% endif %}
+</div>               
+{% endblock %}

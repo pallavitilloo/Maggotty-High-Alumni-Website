@@ -12,6 +12,8 @@ from django.contrib import messages
 from Maggotty.models import Event
 from django.db import models
 
+from Maggotty.models import Contribute, Poll, UserOpinions
+
 def home(request):
     return render(request, "Maggotty/home.html")
 
@@ -75,7 +77,44 @@ def eventlist(request):
     return render(request, "Maggotty/eventlist.html")
 
 def contribute(request):
+    """Handle Content Upload"""
+    if request.method == 'POST':
+        contribute_title = request.POST['title']
+        contribute_img = request.FILES['filename']
+        contribute_description = request.POST['comment']
+
+        # create  and save an instance of the Contribute model
+        contribution = Contribute(title=contribute_title, upload=contribute_img, description=contribute_description)
+        contribution.save()
+
     return render(request, "Maggotty/contribute.html")
+
+
+def contributions(request):
+    contributions = Contribute.objects.all()[:3]
+    return render(request, "Maggotty/contributions.html", {"contributions": contributions})
+
+
+def polls(request):
+    # retrieve all the poll questions from the database
+    polls = Poll.objects.all()
+
+    if request.method == 'POST':
+        answer_1 = request.POST['1']
+        answer_2 = request.POST['2']
+        answer_3 = request.POST['opinion']
+        question_1 = polls[0].question
+        question_2 = polls[1].question
+        user_poll = UserOpinions(question_1=question_1, question_2=question_2, answers_1=answer_1, answers_2=answer_2, username=request.user, opinion=answer_3)
+        user_poll.save()
+    
+    return render(request, "Maggotty/polls.html", {"polls": polls})
+
+
+def approvedPolls(request):
+    polls = UserOpinions.objects.filter(approved=True)
+    return render(request, "Maggotty/allpolls.html", {"polls": polls})
+
 
 def mycart(request):
     return render(request, "Maggotty/mycart.html")

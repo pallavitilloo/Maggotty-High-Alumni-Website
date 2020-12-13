@@ -1,5 +1,5 @@
 from django import forms
-from Maggotty.models import UserProfileInfo
+from Maggotty.models import UserProfileInfo, Poll
 from django.contrib.auth.models import User
 
 

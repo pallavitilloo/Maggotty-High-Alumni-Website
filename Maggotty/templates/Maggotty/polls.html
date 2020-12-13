@@ -1,0 +1,63 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+Opinion Polls
+{% endblock %}
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+        <div class="row" style="padding-bottom: 15px;">
+            <h4>Kindly Give Your Thoughts in the Poll Below...OR </h4>
+            <h4><a href="{% url 'approved_polls' %}" style="margin-left: 20px;">View Polls</a></h4>
+        </div>
+        <div class="jumbotron" style="padding: 10px 20px;">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for poll in polls %}
+                    <p><h6>{{ poll.question }}</h6></p>
+                    <input type="radio" name="{{ poll.pk }}" id="{{ poll.pk }}"> {{ poll.choice_1 }}
+                    <input type="radio" name="{{ poll.pk }}" id="{{ poll.pk }}" style="margin-left: 15px;"> {{ poll.choice_2 }}
+                    <br>
+                {% endfor %}
+                <br><br>
+                <span><h6>Any additional opinions? Comment below...</h6></span>
+                <textarea name="opinion" id="opinion" cols="60" rows="5" style="width: 70%;"></textarea>
+                <br> <br>
+                <p><input type="submit" value="Submit" class="btn"></p>
+            </form>
+        </div>          
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-xl-4">
+                <h2>View events</h2>
+                <p class="text-justify">Check out past events, details, pictures and more. Check upcoming events and participate by booking tickets for them. 
+                </p>
+                <p><a href="{% url 'eventlist' %}" target="_blank" class="btn">Access Events</a></p>
+            </div>
+            <div class="col-md-12 col-lg-5 col-xl-5">
+                <h2>Create content</h2>
+                <p class="text-justify">Contribute on the website with your articles, stories and pictures. Share your content with Maggotty High alumni members and let your creative skills out!</p>
+                <p><a href="{% url 'contribute' %}" target="_blank" class="btn">Upload content</a></p>
+            </div>
+            <div class="col-md-12 col-lg-3 col-xl-3">
+                <h2>External links</h2>
+                <a href="http://schoolsjamaica.com/schooldetail.asp?SchoolID=673" target="_blank" class="redBoldLink">Find the school</a><br/>
+                <a href="https://play.google.com/store/apps/details?id=com.app_maggotty052018.layout&hl=en_US&gl=US" 
+                target="_blank" class="redBoldLink">Get the Maggotty High App!</a><br/>
+                <a href="http://maggottyhightechnologyclub.yolasite.com/" target="_blank" class="redBoldLink">Join our technology club</a><br/>
+                <a href="https://www.facebook.com/maggottyhighschool/" target="_blank" class="redBoldLink">Check us out on Facebook</a><br/>
+                <p><a href="#" target="_blank" class="btn">Opinion Polls</a></p>
+            </div>
+{% else %}
+<div class="jumbotron">
+    <h5><i class="fas fa-exclamation-triangle" style="font-size:36px;color:#7a212e"></i> Sorry, you do not have access
+        here! <br />
+        <br />
+        Please <a href="{% url 'login' %}" class="redLink">login</a> with your registered username and password to
+        access this page.
+        <br /><br />In case you haven't already registered, please <a href="{% url 'register' %}"
+            class="redLink">register</a> on the website
+        and get full access to contribute, donate, participate and do much more!</h5>
+</div>
+
+{% endif %}            
+                         
+{% endblock %}
