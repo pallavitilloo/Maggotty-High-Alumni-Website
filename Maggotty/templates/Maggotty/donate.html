@@ -3,6 +3,8 @@
 Donate
 {% endblock %}
 {% block content %}
+{% load static %}
+{% if user.is_authenticated %}
 <p style="text-align: justify;">The first fund-raising event took place on December 5, 2011, the second on December 1, 2012 
     and the third on December 7, 2013. In its effort to assist the Maggotty High School in upgrading its classrooms to 'Smart' 
     classrooms, the association has secured 40 computers for the School.</p>
@@ -10,23 +12,10 @@ Donate
     <p>You can make your financial contribution to the institution here. 
     Please note that all funds directly get credited to the Maggotty High Alumni Association US Northen Region
     </p>
+ <h2>Please fill the below details before you proceed with the payment</h2>
     <br/>
     <br/>
 <!--<img src='\static\Maggotty\adam-solomon-WHUDOzd5IYU-unsplash.jpg' height="200" width="400"/>-->
-<form>
-    <div class="form-group row">
-        <label for="firstname" class="col-md-2 col-form-label">First Name</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="lastname" class="col-md-2 col-form-label">Last Name</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
-        </div>
-    </div>
-</form>
 <div class="form-group row">
     <label for="telnum" class="col-12 col-md-2 col-form-label">Contact Tel.</label>
     <div class="col-5 col-md-3">
@@ -54,4 +43,14 @@ Donate
         <button type="submit" class="btn btn-primary" style="width: 250px;">Proceed to Pay</button>
     </div>
 </div>
+{% else %}
+<div class="jumbotron">
+    <h5><i class="fas fa-exclamation-triangle" style="font-size:36px;color:#7a212e"></i>  Sorry, you do not have access here! <br/>
+        <br/>
+        Please <a href="{% url 'login' %}" class="redLink">login</a> with your registered username and password to access this page.
+        <br/><br/>In case you haven't already registered, please <a href="{% url 'register' %}" class="redLink">register</a> on the website
+        and get full access to contribute, donate, participate and do much more!</h5>
+        </div>
+
+{% endif %}
 {% endblock %}

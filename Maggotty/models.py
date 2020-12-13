@@ -12,6 +12,7 @@ def __str__(self):
     return self.user.username
 
 class Event(models.Model):
+<<<<<<< HEAD
     title= models.CharField(max_length=300, unique=True)
     content= models.TextField()
 
@@ -40,3 +41,16 @@ class UserOpinions(models.Model):
     approved = models.BooleanField(default=False)
     
     
+=======
+    eventName = models.CharField("Event Name", max_length=255, blank = False, unique=True)
+    eventDesc = models.TextField("Event Description", max_length=1024, blank = True, null = True)
+    fromDate = models.DateTimeField("From Date", auto_now_add=False)
+    toDate = models.DateTimeField("To Date", auto_now_add=False)
+    timings = models.CharField("Timings", max_length=255,  blank = False, null = True)
+    ticket = models.FloatField("Ticket Price", blank = True, default=0.0, null = True)
+    isApproved = models.BooleanField("Is Approved", default=False)
+    createdBy = models.CharField("Created By", max_length=255)
+    
+    def __str__(self):
+        return self.eventName
+>>>>>>> 625c1ea148453707970a921ece247a254dc5a506

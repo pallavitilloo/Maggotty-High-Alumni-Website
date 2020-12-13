@@ -1,0 +1,60 @@
+{% extends 'Maggotty/layout.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        <div class="col-md-10 col-xs-10 col-sm-10">
+            <h3 class="round3" style="text-align:center;">Events</h3>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-xs-10 col-sm-10"></div>
+        <div class="col-md-2 col-xs-1 col-sm-1">
+            <br />
+            <a href="{% url 'create' %}">
+                <button type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </a>
+        </div>
+    </div>
+    <br />
+    {% for event in event_list %}
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        <div class="col-md-7 col-xs-7 col-sm-7">
+            <ul class="list-group">
+
+                <li class="list-group-item ">
+                    <a href="{% url 'eventdetails' event.pk %}"> {{ event.EventName }} {{event.EventDesc}} </a> <span class="badge"></span>
+                </li>
+            </ul>
+            <br>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1">
+            <a href="{% url 'eventdetails' event.pk %}">
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-open"></span>
+                </button>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="{% url 'edit' event.pk %}">
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="{% url 'delete' event.pk %}">
+                <button type="button" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </a>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
