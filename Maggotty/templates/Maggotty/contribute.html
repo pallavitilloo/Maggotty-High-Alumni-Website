@@ -15,19 +15,19 @@ Upload content
         <!-- intent to submit form -->
         {% csrf_token %}
         <div class="row" style="padding-bottom:10px">
-            <input type="text" class="form-control" id="usr" placeholder="Title of your post" name="title">
+            <input type="text" class="form-control" id="usr" placeholder="Title of your post" name="title" required>
             <br />
         </div>
         <div class="row">
             <div class="custom-file mb-3">
-                <input type="file" class="custom-file-input" id="customFile" name="filename" accept="image/*">
+                <input type="file" class="custom-file-input" id="customFile" name="filename" accept="image/*" required>
                 <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
         </div>
 
         <div class="row">
             <textarea class="form-control" rows=10 id="comment" placeholder="Write something here..."
-                name='comment'></textarea>
+                name='comment' required></textarea>
         </div>
         <div class="row" style="height:20px"></div>
 
