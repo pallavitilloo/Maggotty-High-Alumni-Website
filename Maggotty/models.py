@@ -31,20 +31,27 @@ class Contribute(models.Model):
     upload = models.ImageField(upload_to='contribute/')
     description = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 
 class Poll(models.Model):
     question = models.TextField()
     choice_1 = models.CharField(max_length=34)
     choice_2 = models.CharField(max_length=34)
-    # choices = ((choice_1, choice_1), (choice_2, choice_2))
-    # options = models.CharField(choices=choices, max_length=34)
+
+    def __str__(self):
+        return self.question
 
 
 class UserOpinions(models.Model):    
-    question_1 = models.CharField(max_length=255)
-    question_2 = models.CharField(max_length=255)
-    answers_1 =  models.CharField(max_length=255)
-    answers_2 =  models.CharField(max_length=255)
+    question_1 = models.CharField(max_length=255, blank=True, null=True)
+    question_2 = models.CharField(max_length=255, blank=True, null=True)
+    answers_1 =  models.CharField(max_length=255, blank=True, null=True)
+    answers_2 =  models.CharField(max_length=255, blank=True, null=True)
     opinion = models.TextField(default="Test Opinion")
     username = models.CharField(max_length=255)
     approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.opinion[:10]

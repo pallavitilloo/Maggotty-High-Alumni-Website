@@ -18,6 +18,7 @@ Alumni Contributions
         </div>  
     </div>    
     <!-- show all uploaded contributions -->
+    {% if contributions %}
     {% for contribution in contributions %}
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
@@ -28,5 +29,8 @@ Alumni Contributions
     </div> 
     <br/> 
     {% endfor %}
+    {% else %}
+        <h3 style="text-align: center;">No contributions have been made yet...Please check again later</h3>
+    {% endif %}
 </div>               
 {% endblock %}
