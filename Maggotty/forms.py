@@ -16,7 +16,16 @@ class UserProfileInfoForm(forms.ModelForm):
         model = UserProfileInfo
         fields = ('portfolio_site', 'profile_pic')
 
-class CreateEventForm(forms.ModelForm):
+class DateForm(forms.Form):
+    date = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        
+    )
+
+class CreateEventForm(forms.ModelForm):    
+   
     class Meta:
         model = Event
-        fields = "__all__"
+        fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','timings','ticket']        
+    
+

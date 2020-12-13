@@ -13,45 +13,34 @@ from Maggotty.models import Event
 from django.db import models
 from django.views.generic import ListView, DetailView
 
-class IndexView(ListView):
-    template_name = 'Maggotty/index.html'
-    context_object_name = 'event_list'
+# class IndexView(ListView):
+#     template_name = 'Maggotty/index.html'
+#     context_object_name = 'event_list'
 
-    def get_queryset(self):
-        return Event.objects.all()
+#     def get_queryset(self):
+#         return Event.objects.all()
 
-class EventDetailView(DetailView):
-    model = Event
-    template_name = 'Maggotty/eventdetails.html'
+# class EventDetailView(DetailView):
+#     model = Event
+#     template_name = 'Maggotty/eventdetails.html'
 
-def create(request):
-    if request.method == 'POST':
-        form = CreateEventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    form = CreateEventForm()
+# def edit(request, pk, template_name='Maggotty/edit.html'):
+#     event = get_object_or_404(Event, pk=pk)
+#     # form = CreateEventForm(request.POST or None, instance=post)
+#     form = CreateEventForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         return redirect('home')
+#     return render(request, template_name, {'form':form})
 
-    return render(request,'Maggotty/event.html',{'form': form})
+# def delete(request, pk, template_name='Maggotty/confirm_delete.html'):
+#     event = get_object_or_404(Event, pk=pk)
+#     if request.method=='POST':
+#         event.delete()
+#         return redirect('home')
+#     return render(request, template_name, {'object':event})
 
-def edit(request, pk, template_name='Maggotty/edit.html'):
-    event = get_object_or_404(Event, pk=pk)
-    # form = CreateEventForm(request.POST or None, instance=post)
-    form = CreateEventForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('home')
-    return render(request, template_name, {'form':form})
 
-def delete(request, pk, template_name='Maggotty/confirm_delete.html'):
-    event = get_object_or_404(Event, pk=pk)
-    if request.method=='POST':
-        event.delete()
-        return redirect('home')
-    return render(request, template_name, {'object':event})
-
-def eventdetails(request):
-    return render(request, "Maggotty/eventdetails.html")
 
 def home(request):
     return render(request, "Maggotty/home.html")
@@ -91,7 +80,7 @@ def register(request):
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-            messages.success(request, f'{user}')
+            messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
             return redirect('home')
             return redirect('login')
             if 'profile_pic' in request.FILES:
@@ -109,47 +98,34 @@ def register(request):
                            'profile_form': profile_form,
                            'registered': registered})
 
-def event(request):
-    return render(request, "Maggotty/event.html")
-
-def eventlist(request):
-    return render(request, "Maggotty/eventlist.html")
-
 def contribute(request):
     return render(request, "Maggotty/contribute.html")
 
 def mycart(request):
     return render(request, "Maggotty/mycart.html")
 
-def eventinfo(request):
-    return render(request, "Maggotty/eventinfo.html")
+# def event(request):
+#     return render(request, "Maggotty/event.html")
 
+def alleventslist(request):
+    return render(request, "Maggotty/alleventslist.html")
+
+def upcomingevents(request):
+    return render(request, "Maggotty/upcomingevents.html")
+
+def createevent(request):
+    if request.method == 'POST':
+        form = CreateEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'✔️ Event created')
+            return redirect('home')
+    form = CreateEventForm()
+    return render(request,'Maggotty/createevent.html',{'form': form})
+
+def eventdetails(request):
+    return render(request, "Maggotty/eventdetails.html")
 
 def newsdetail(request):
     return render(request, "Maggotty/newsdetail.html")
-
-
-def hello_there(request, name):
-    
-    return render(
-        request,
-        'Maggotty/hello_there.html',
-        {
-            'name': name,
-            'date': datetime.now()
-        }
-    )
-
-# def event(request):    
-#     if request.method == 'POST':
-#         if request.POST.get('title') and request.POST.get('content'):
-#             post=Event()            
-#             post.title= request.POST.get('title')
-#             post.content= request.POST.get('content')
-#             post.save()            
-#             return render(request, 'Maggotty/event.html')  
-
-#     else:
-#         return render(request,'Maggotty/event.html')
-
     

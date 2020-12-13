@@ -8,15 +8,16 @@ Create a new event
 {% load static %}
 {% if user.is_authenticated %}
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
 
         <div class="col-md-10 col-xs-10 col-sm-10 ">
             <br />
-            <h6 style="text-align:center;">
-                <medium color="red"> All fields are required</medium>
-            </h6>
+            <!-- <h6 style="text-align:left;">
+                <small font-color="red"> All fields are required</small>
+            </h6> -->
         </div>
         <div class="col-md-1 col-xs-1 col-sm-1">
         </div>
@@ -31,14 +32,38 @@ Create a new event
                 {% endfor %}
                 {% for field in form.visible_fields %}
                 <div class="form-group">
-                    {{ field.label_tag }}
-                    {% render_field field class="form-control" %}
-                    {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 col-1 col-sm-1">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="col-md-9 col-1 col-sm-1">
+                                {% render_field field class="form-control" %}
+                                <!-- {% if field.label == "From Date" or field.label == "To Date"  %}
+
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                  </div>  
+                                {% endif %} -->
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>  
                 </div>
                 {% endfor %}
-                <button type="submit" class="btn btn-primary">post</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-primary">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+                
             </form>
             <br>
         </div>

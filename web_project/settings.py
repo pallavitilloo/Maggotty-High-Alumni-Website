@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Maggotty',
     'crispy_forms',
     'widget_tweaks',
+    'tempus_dominus',
 ]
 
 MIDDLEWARE = [

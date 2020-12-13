@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 class UserProfileInfo(models.Model):
 
@@ -11,15 +12,16 @@ class UserProfileInfo(models.Model):
 def __str__(self):
     return self.user.username
 
-class Event(models.Model):
-    eventName = models.CharField("Event Name", max_length=255, blank = False, unique=True)
-    eventDesc = models.TextField("Event Description", max_length=1024, blank = True, null = True)
-    fromDate = models.DateTimeField("From Date", auto_now_add=False)
-    toDate = models.DateTimeField("To Date", auto_now_add=False)
-    timings = models.CharField("Timings", max_length=255,  blank = False, null = True)
-    ticket = models.FloatField("Ticket Price", blank = True, default=0.0, null = True)
+class Event(models.Model):   
+    
+    eventName = models.CharField("Event Name", max_length=255, blank = False, unique=True, help_text="A unique name for your event", validators=[RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')])
+    eventDesc = models.TextField("Event Description", max_length=1024, blank = True, null = True,  help_text="A useful description for your event")
+    fromDate = models.DateTimeField("From Date", help_text="MM/DD/YYYY")  
+    toDate = models.DateTimeField("To Date", help_text="MM/DD/YYYY")  
+    timings = models.CharField("Event Timings", max_length=255, help_text="Timings for the event") 
+    ticket = models.FloatField("Ticket Price", blank = True, null = True, help_text="The ticket price for this event")
     isApproved = models.BooleanField("Is Approved", default=False)
     createdBy = models.CharField("Created By", max_length=255)
     
-    def __str__(self):
+    def __str__(self):        
         return self.eventName
