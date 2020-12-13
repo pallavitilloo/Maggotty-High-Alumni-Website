@@ -25,7 +25,9 @@ urlpatterns = [
     path("polls", views.polls, name="polls"),
     path("approved_polls", views.approvedPolls, name="approved_polls"),
     path("mycart/", views.mycart, name="mycart"),
-    path("eventinfo/", views.eventinfo, name="eventinfo"),
+    path("alleventslist/", views.alleventslist, name="alleventslist"),
+    path("upcomingevents/", views.upcomingevents, name="upcomingevents"),
+    path("createevent/", views.createevent, name="createevent"),
     path("eventdetails/", views.eventdetails, name="eventdetails"),
     path("newsdetail/", views.newsdetail, name="newsdetail")
 ]

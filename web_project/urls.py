@@ -34,4 +34,4 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 
 # configure URL/URI for uploaded content (in the contribute section)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

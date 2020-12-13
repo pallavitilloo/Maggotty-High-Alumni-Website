@@ -1,9 +1,5 @@
 from django import forms
-<<<<<<< HEAD
-from Maggotty.models import UserProfileInfo, Poll
-=======
-from Maggotty.models import Event, UserProfileInfo
->>>>>>> 625c1ea148453707970a921ece247a254dc5a506
+from Maggotty.models import UserProfileInfo, Poll, Event
 from django.contrib.auth.models import User
 
 
