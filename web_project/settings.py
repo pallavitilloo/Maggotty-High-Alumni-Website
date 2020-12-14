@@ -24,7 +24,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'maggottyhighalumni@gmail.com' 
 EMAIL_HOST_PASSWORD = 'maggotty123$'
 EMAIL_PORT = 587
-REGISTRATION_EMAIL_BODY = 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
