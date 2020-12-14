@@ -64,4 +64,5 @@ class UserOpinions(models.Model):
 class Order(models.Model):
     username = models.CharField(max_length=255, blank=False)
     eventID = models.IntegerField()
+    eventName = models.CharField(max_length=255)
     ticketPrice = models.FloatField()

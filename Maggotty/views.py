@@ -148,9 +148,6 @@ def approvedPolls(request):
     return render(request, "Maggotty/allpolls.html", {"polls": polls})
 
 
-def mycart(request):
-    return render(request, "Maggotty/mycart.html")
-
 # def event(request):
 #     return render(request, "Maggotty/event.html")
 
@@ -161,18 +158,22 @@ def alleventslist(request):
 
 def upcomingevents(request):
     if request.method == 'POST':
-        if request.POST.get('eventID') and request.POST.get('ticket'):
+        if request.POST.get('eventID') and request.POST.get('ticket') and request.POST.get('eventName'):
             current_order = Order()
             current_order.username= request.user.username
             current_order.eventID = request.POST.get('eventID')
+            current_order.eventName = request.POST.get('eventName')
             current_order.ticketPrice = request.POST.get('ticket')
-            current_order.save()                
-            return render(request, "Maggotty/mycart.html")      
-    today = date.today()
-    after_ten_yrs = today.replace(year = today.year + 10)
-    today = today.strftime('%Y-%m-%d')
-    allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
-    return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
+            current_order.save()  
+            current_user = request.user           
+            user_Orders = Order.objects.filter(username=current_user.username)
+            return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
+    else:
+        today = date.today()
+        after_ten_yrs = today.replace(year = today.year + 10)
+        today = today.strftime('%Y-%m-%d')
+        allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
+        return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
 
     
 
@@ -195,4 +196,11 @@ def eventdetails(request):
 
 def newsdetail(request):
     return render(request, "Maggotty/newsdetail.html")
+
+def mycart(request):
+    if request.method == 'POST':
+            return render(request, "https://paypal.com")      
+    current_user = request.user
+    user_Orders = Order.objects.filter(username=current_user.username)
+    return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
     
