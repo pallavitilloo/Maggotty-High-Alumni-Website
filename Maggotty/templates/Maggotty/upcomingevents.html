@@ -19,7 +19,8 @@ Events page
             <br/>   
         </div>  
     </div> 
-    
+    <form action="" method="POST">
+      {% csrf_token %}
     {% for record in allEvents %} 
     <div class="card">
         <h5 class="card-header text-white" style="background-color: #7a212e;">{{record.eventName}}</h5>      
@@ -29,6 +30,8 @@ Events page
           {% else %}
             <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
           {% endif %}
+          <input type="hidden" name="eventID" value="{{record.id}}" />
+          <input type="hidden" name="ticket" value="{{record.ticket}}" />
           <small class="redLink">{{record.startTime}} to {{record.endTime}}</small><br/>
           <small class="redLink">Event Ticket Price : ${{record.ticket}}</small><br/>
           <small class="redLink">Event Organizer : {{record.createdBy}}</small>
@@ -38,5 +41,6 @@ Events page
       </div>  
     <br/>
     {% endfor %}
+  </form>
 </div>               
 {% endblock %}

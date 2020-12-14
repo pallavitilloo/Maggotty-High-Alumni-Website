@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect, request
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from Maggotty.models import Event
+from Maggotty.models import Event, Order
 from django.db import models
 from django.views.generic import ListView, DetailView
 from datetime import date
@@ -160,14 +160,21 @@ def alleventslist(request):
     return render(request, "Maggotty/alleventslist.html", {"allEvents": allEvents})
 
 def upcomingevents(request):
-    
-    # if 'attend' in request.POST:
-        
+    if request.method == 'POST':
+        if request.POST.get('eventID') and request.POST.get('ticket'):
+            current_order = Order()
+            current_order.username= request.user.username
+            current_order.eventID = request.POST.get('eventID')
+            current_order.ticketPrice = request.POST.get('ticket')
+            current_order.save()                
+            return render(request, "Maggotty/mycart.html")      
     today = date.today()
     after_ten_yrs = today.replace(year = today.year + 10)
     today = today.strftime('%Y-%m-%d')
     allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
     return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
+
+    
 
 def createevent(request):
     if request.method == 'POST':
