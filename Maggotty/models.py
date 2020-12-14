@@ -66,3 +66,4 @@ class Order(models.Model):
     eventID = models.IntegerField()
     eventName = models.CharField(max_length=255)
     ticketPrice = models.FloatField()
+    ifPaid = models.BooleanField(default=False)

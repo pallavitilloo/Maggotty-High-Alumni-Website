@@ -45,7 +45,10 @@ from datetime import date
 
 from Maggotty.models import Contribute, Poll, UserOpinions
 
-def paystatus(request):
+def paystatus(request):        
+    current_user = request.user    
+    Order.objects.filter(username=current_user.username, ifPaid=False).update(ifPaid=True)
+    # return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
     return render(request, "Maggotty/paystatus.html")
 
 def home(request):
@@ -172,7 +175,7 @@ def upcomingevents(request):
             current_order.eventName = currEvent.eventName
             current_order.ticketPrice = currEvent.ticket
             current_order.save()                         
-            user_Orders = Order.objects.filter(username=current_user.username)
+            user_Orders = Order.objects.filter(username=current_user.username, ifPaid=False)
             return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
         # if request.POST.get('eventID') and request.POST.get('ticket') and request.POST.get('eventName'):
         #     current_order = Order()
@@ -217,6 +220,6 @@ def mycart(request):
     if request.method == 'POST':
             return render(request, "https://paypal.com")      
     current_user = request.user
-    user_Orders = Order.objects.filter(username=current_user.username)
+    user_Orders = Order.objects.filter(username=current_user.username, ifPaid=False)
     return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
     

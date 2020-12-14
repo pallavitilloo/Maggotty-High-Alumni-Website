@@ -14,7 +14,7 @@ My Cart
           <div class="col">
             <h5 class="mb-4">My Cart</h5>  
           </div>
-        </div>
+        </div>        
         {% for order in Orders %}
         <div class="row">
           <div class="col-9">
@@ -24,8 +24,11 @@ My Cart
             <p class="mb-0">${{order.ticketPrice}}</p>
           </div>
         </div>
-        {% endfor %}
+        {% empty %}
+          <medium>Your cart is empty. <a href="{% url 'upcomingevents' %}" class='redLink'>Buy tickets </a>now!</medium>
+        {% endfor %}        
       </div>
+      {% if Orders.all %}
       <div class="col-4" style="background-color: white; padding:10px">
         <div class="row">
           <div class="col">
@@ -41,7 +44,7 @@ My Cart
           <div class="col-3 right-align">
             <medium class="mb-3">${{order.ticketPrice}}</medium>
           </div>
-        </div>
+        </div>         
         {% endfor %}
         <br/>
         <div class="row">
@@ -93,6 +96,7 @@ My Cart
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
     <hr/>
     <div class="row">
