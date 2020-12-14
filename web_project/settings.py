@@ -17,6 +17,15 @@ settings_dir = os.path.dirname(__file__)
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Settings for email
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'maggottyhighalumni@gmail.com' 
+EMAIL_HOST_PASSWORD = 'maggotty123$'
+EMAIL_PORT = 587
+REGISTRATION_EMAIL_BODY = 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
