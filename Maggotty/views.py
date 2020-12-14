@@ -13,6 +13,8 @@ from Maggotty.models import Event, Order
 from django.db import models
 from django.views.generic import ListView, DetailView
 from datetime import date
+from django.conf import settings
+from django.core.mail import send_mail
 
 # class IndexView(ListView):
 #     template_name = 'Maggotty/index.html'
@@ -88,8 +90,14 @@ def register(request):
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)
-            profile.user = user
+            profile.user = user.email
             messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
+            subject = "Registration successful!"
+            message = settings.REGISTRATION_EMAIL_BODY
+            email_from = settings.EMAIL_HOST_USER 
+            recipient_list = [user.email] 
+            send_mail(subject, message, email_from, recipient_list) 
+
             return redirect('home')
             return redirect('login')
             if 'profile_pic' in request.FILES:
