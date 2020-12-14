@@ -5,6 +5,9 @@ Opinion Polls
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
+        {% if message %}
+            <h3><p style="color: green">{{ message }}</p></h3>
+        {% endif %}
         <div class="row" style="padding-bottom: 15px;">
             <h4>Kindly Give Your Thoughts in the Poll Below...OR </h4>
             <h4><a href="{% url 'approved_polls' %}" style="margin-left: 20px;">View Polls</a></h4>

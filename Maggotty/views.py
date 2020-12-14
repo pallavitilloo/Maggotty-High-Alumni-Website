@@ -134,6 +134,8 @@ def contributions(request):
 def polls(request):
     # retrieve all the poll questions from the database
     polls = Poll.objects.all()
+    # feedback messages
+    message = None
 
     if request.method == 'POST':
         if '1' in request.POST and '2' in request.POST:
@@ -151,11 +153,13 @@ def polls(request):
             
         user_poll = UserOpinions(question_1=question_1, question_2=question_2, answers_1=answer_1, answers_2=answer_2, username=request.user, opinion=answer_3)
         user_poll.save()
+
+        message = "Poll created successfully"
     
-    return render(request, "Maggotty/polls.html", {"polls": polls})
+    return render(request, "Maggotty/polls.html", {"polls": polls, "message": message})
 
 def approvedPolls(request):
-    polls = UserOpinions.objects.filter(approved=True)
+    polls = UserOpinions.objects.all() # .filter(approved=True)
     return render(request, "Maggotty/allpolls.html", {"polls": polls})
 
 
