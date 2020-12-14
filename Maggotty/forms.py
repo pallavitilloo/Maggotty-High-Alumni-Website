@@ -28,8 +28,10 @@ class CreateEventForm(forms.ModelForm):
         model = Event
         widgets = {
             'fromDate': forms.DateInput(attrs={'type':'date'}),
-            'toDate' : forms.DateInput(attrs={'type':'date'})
+            'toDate' : forms.DateInput(attrs={'type':'date'}),
+            'startTime':forms.TimeInput(attrs={'type':'time'}),
+            'endTime':forms.TimeInput(attrs={'type':'time'})
         }
-        fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','timings','ticket']        
+        fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','startTime','endTime','ticket']        
     
 

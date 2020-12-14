@@ -20,10 +20,10 @@ Events page
     
     {% for record in allEvents %} 
     <div class="card">
-        <h5 class="card-header redLink">{{record.eventName}}</h5>      
+        <h5 class="card-header text-white" style="background-color: #7a212e;">{{record.eventName}}</h5>      
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
-          <small class="redLink">{{record.timings}}</small><br/>
+          <small class="redLink">{{record.startTime}} to {{record.endTime}}</small><br/>
           <small class="redLink">${{record.ticket}}</small><br/>
           <small class="redLink">{{record.createdBy}}</small>
           <p class="card-text">{{record.eventDesc}}</p>
