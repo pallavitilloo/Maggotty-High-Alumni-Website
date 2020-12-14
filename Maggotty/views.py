@@ -160,6 +160,9 @@ def alleventslist(request):
     return render(request, "Maggotty/alleventslist.html", {"allEvents": allEvents})
 
 def upcomingevents(request):
+    
+    # if 'attend' in request.POST:
+        
     today = date.today()
     after_ten_yrs = today.replace(year = today.year + 10)
     today = today.strftime('%Y-%m-%d')

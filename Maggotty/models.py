@@ -1,15 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-from datetime import date
 
-@property
-def is_upcoming(self):
-    today = date.today().strftime('%Y-%m-%d')
-    nottoday = self.date.strftime('%Y-%m-%d')
-    if  today < nottoday:
-        return True
-    return False
+
 
 class UserProfileInfo(models.Model):
 
@@ -67,3 +60,8 @@ class UserOpinions(models.Model):
 
     def __str__(self):
         return self.opinion[:10]
+
+class Order(models.Model):
+    username = models.CharField(max_length=255, blank=False)
+    eventID = models.IntegerField()
+    ticketPrice = models.FloatField()
