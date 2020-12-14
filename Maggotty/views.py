@@ -158,16 +158,29 @@ def alleventslist(request):
 
 def upcomingevents(request):
     if request.method == 'POST':
-        if request.POST.get('eventID') and request.POST.get('ticket') and request.POST.get('eventName'):
+        print(request.POST)
+        if request.POST.get('recordID'):
+            event_id = int(request.POST.get('recordID'))
+            currEvent = Event.objects.filter(id=event_id)[0]
             current_order = Order()
-            current_order.username= request.user.username
-            current_order.eventID = request.POST.get('eventID')
-            current_order.eventName = request.POST.get('eventName')
-            current_order.ticketPrice = request.POST.get('ticket')
-            current_order.save()  
-            current_user = request.user           
+            current_user = request.user
+            current_order.username= current_user.username
+            current_order.eventID = event_id
+            current_order.eventName = currEvent.eventName
+            current_order.ticketPrice = currEvent.ticket
+            current_order.save()                         
             user_Orders = Order.objects.filter(username=current_user.username)
             return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
+        # if request.POST.get('eventID') and request.POST.get('ticket') and request.POST.get('eventName'):
+        #     current_order = Order()
+        #     current_order.username= request.user.username
+        #     current_order.eventID = request.POST.get('eventID')
+        #     current_order.eventName = request.POST.get('eventName')
+        #     current_order.ticketPrice = request.POST.get('ticket')
+        #     current_order.save()  
+        #     current_user = request.user           
+        #     user_Orders = Order.objects.filter(username=current_user.username)
+        #     return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
     else:
         today = date.today()
         after_ten_yrs = today.replace(year = today.year + 10)
