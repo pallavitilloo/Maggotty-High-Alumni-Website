@@ -5,11 +5,10 @@ Events page
 {% block content %}
 
 <div class="container">
-    <div class="row row-content align-items-center">
+    <div class="row row-content">
         <div class="col col-sm order-sm-first col-md">
             <h3>
-                These are the past Maggotty High Alumni Association events.<br/>
-                
+                These are the past Maggotty High Alumni Association events.<br/>                
             </h3>
             <p>
                 To attend an event, check out our <a href="{% url 'upcomingevents' %}" class="redLink">Upcoming events</a>.
@@ -17,30 +16,20 @@ Events page
             </p>
             <br/>   
         </div>  
-    </div>    
-    <div class="row row-content align-items-center">
-        <div class="col col-sm order-sm-first col-md">
-            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2013 Dinner Dance</h3></a>
-            <p class="d-none d-sm-block">December 7, 2013<br/>Richie Rich Place and Banquet Hall
-                <br/>110-19 Atlantic Ave. Queens, NY 11418</p>            
-        </div> 
-    </div>  
-    <br/>        
-    <div class="row row-content align-items-center">
-        <div class="col col-sm order-sm-first col-md">
-            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2012 Dinner Dance</h3></a>
-            <p class="d-none d-sm-block">December 1, 2012<br/>Richie Rich Place and Banquet Hall
-                <br/>110-19 Atlantic Ave. Queens, NY 11418</p> 
-        </div> 
     </div> 
+    
+    {% for record in allEvents %} 
+    <div class="card">
+        <h5 class="card-header redLink">{{record.eventName}}</h5>      
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
+          <small class="redLink">{{record.timings}}</small><br/>
+          <small class="redLink">${{record.ticket}}</small><br/>
+          <small class="redLink">{{record.createdBy}}</small>
+          <p class="card-text">{{record.eventDesc}}</p>
+        </div>
+      </div>  
     <br/>
-    <div class="row row-content align-items-center">
-        <div class="col col-sm order-sm-first col-md">
-            <a href="{% url 'eventdetails' %}" class="redLink"><h3 class="mt-0"> MHAA 2011 Dinner Dance</h3></a>
-            <p class="d-none d-sm-block">December 10, 2011<br/>Sunset Hall
-                <br/>106 First Street, Mount Vernon, NY</p>            
-            <!-- <p><a href="{% url 'mycart' %}" class="btn">Attend this event</a></p> -->
-        </div> 
-    </div>
+    {% endfor %}
 </div>               
 {% endblock %}

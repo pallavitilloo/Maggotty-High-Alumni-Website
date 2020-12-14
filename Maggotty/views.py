@@ -134,7 +134,6 @@ def polls(request):
     
     return render(request, "Maggotty/polls.html", {"polls": polls})
 
-
 def approvedPolls(request):
     polls = UserOpinions.objects.filter(approved=True)
     return render(request, "Maggotty/allpolls.html", {"polls": polls})
@@ -147,10 +146,12 @@ def mycart(request):
 #     return render(request, "Maggotty/event.html")
 
 def alleventslist(request):
-    return render(request, "Maggotty/alleventslist.html")
+    allEvents = Event.objects.all()
+    return render(request, "Maggotty/alleventslist.html", {"allEvents": allEvents})
 
 def upcomingevents(request):
-    return render(request, "Maggotty/upcomingevents.html")
+    allEvents = Event.objects.all()
+    return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
 
 def createevent(request):
     if request.method == 'POST':
