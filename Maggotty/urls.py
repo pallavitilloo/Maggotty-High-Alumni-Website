@@ -29,5 +29,6 @@ urlpatterns = [
     path("upcomingevents/", views.upcomingevents, name="upcomingevents"),
     path("createevent/", views.createevent, name="createevent"),
     path("eventdetails/", views.eventdetails, name="eventdetails"),
-    path("newsdetail/", views.newsdetail, name="newsdetail")
+    path("newsdetail/", views.newsdetail, name="newsdetail"),
+    path("paystatus/", views.paystatus, name="paystatus")
 ]

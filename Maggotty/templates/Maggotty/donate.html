@@ -34,13 +34,54 @@ Donate
 <div class="form-group row">
     <label for="Enter amount" class="col-md-2 col-form-label">Donation amount</label>
     <div class="col-3 col-md-10">
-        <input type="enter amount" class="form-control" id="donate" name="donate" placeholder="Enter amount">
+        <input type="enter amount" class="form-control" id="donateamount" name="donate" placeholder="Enter amount">
     </div>
 </div>
 <br/>
 <div class="form-group row">
     <div class="col-md-12" style="text-align: center;">
-        <button type="submit" class="btn btn-primary" style="width: 250px;">Proceed to Pay</button>
+        <div id="paypal-button-container"></div>
+        <!-- <button type="submit" class="btn btn-primary" style="width: 250px;">Proceed to Pay</button> -->
+         <!-- Include the PayPal JavaScript SDK -->
+         <script
+         src="https://www.paypal.com/sdk/js?client-id=AeVRvPIjNdJfcwWhFZdDw7vLJK8Gq2BtgvWOrqI5pKKfT7GdFdWtI3g6WDgccJ92Oy1Enx8oSRVS9GHB&currency=USD&disable-funding=credit"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <script>
+         var total = document.getElementById('donateamount')
+
+         // Render the PayPal button into #paypal-button-container
+         paypal.Buttons({
+
+             style: {
+                 color: 'blue',
+                 shape: 'rect',
+                 size: 'medium',
+                 tagline: 'false',
+                 layout: 'horizontal',
+             },
+
+             // Set up the transaction
+             createOrder: function (data, actions) {
+                 return actions.order.create({
+                     purchase_units: [{
+                         amount: {
+                             value: '25'
+                         }
+                     }]
+                 });
+             },
+
+             // Finalize the transaction
+             onApprove: function (data, actions) {
+                 return actions.order.capture().then(function (details) {
+                     // Show a success message to the buyer
+                     alert('Payment successfully completed by ' + details.payer.name.given_name + '!');
+                 });
+             }
+
+         }).render('#paypal-button-container');
+     </script>
     </div>
 </div>
 {% else %}

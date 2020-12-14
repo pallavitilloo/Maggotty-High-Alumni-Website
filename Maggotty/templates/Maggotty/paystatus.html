@@ -1,0 +1,40 @@
+{% extends "Maggotty/layout.html" %}
+{% block title %}
+User Registration
+{% endblock %}
+{% block content %}
+{% load static %}
+<h2 style="padding-top: 20px;padding:bottom:50px;">Payment completed successfully !</h2>
+<br />
+<div class="exists">
+    <medium class="chkexists">
+        <a class="login redLink" href="{% url 'home' %}">Back to home</a>
+    </medium>
+</div>
+
+{% endblock %}
+
+
+views.py
+def donate(request):
+    if request.method == 'POST':
+        donate_form = DonateForm(request.POST)
+        if donate_form.is_valid():
+            donate_form.save()
+            messages.success(request, f'✔️ Payment completed successfully for {user} !')
+            return redirect('paystatus')
+    return render(request, "Maggotty/donate.html")  
+
+forms.py
+class DonateForm(forms.ModelForm):
+
+    class Meta():
+        model = Donate
+        fields = ('donate', 'telnum', 'emailid', 'areacode')
+
+models.py
+class Donate(models.Model):
+    donate = models.CharField(max_length=5)
+    telnum = models.CharField(max_length=10)
+    areacode = models.CharField(max_length=1)
+    emailid = models.CharField(max_length=30)

@@ -45,6 +45,9 @@ from datetime import date
 
 from Maggotty.models import Contribute, Poll, UserOpinions
 
+def paystatus(request):
+    return render(request, "Maggotty/paystatus.html")
+
 def home(request):
     return render(request, "Maggotty/home.html")
 
