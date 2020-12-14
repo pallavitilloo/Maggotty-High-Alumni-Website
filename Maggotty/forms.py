@@ -1,5 +1,5 @@
 from django import forms
-from Maggotty.models import UserProfileInfo, Poll, Event
+from Maggotty.models import UserProfileInfo, Poll, Event, ContactUs, Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -68,3 +68,14 @@ class CreateEventForm(forms.ModelForm):
                 raise forms.ValidationError(
                     _("Minimum characters required are 25."))
             return eventName
+
+class ContactUsForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs        
+        fields = ['name','email','subject','comments']
+
+class FeedbackForm(forms.ModelForm):
+
+    class Meta:
+        model = Feedback        
+        fields = ['fname','lname','email','contact','feedback']

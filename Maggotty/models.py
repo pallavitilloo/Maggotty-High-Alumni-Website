@@ -67,3 +67,16 @@ class Order(models.Model):
     eventName = models.CharField(max_length=255)
     ticketPrice = models.FloatField()
     ifPaid = models.BooleanField(default=False)
+
+class Feedback(models.Model):    
+    fname = models.CharField(max_length=255, blank=False, verbose_name="First Name")
+    lname = models.CharField(max_length=255, blank=False, verbose_name="Last Name")
+    email = models.CharField(max_length=255, blank=False, verbose_name="Email")
+    contact = models.CharField(max_length=255, blank=False, verbose_name="Contact Information")
+    feedback = models.TextField(max_length=2000, blank=False, verbose_name="Feedback")
+
+class ContactUs(models.Model):    
+    name = models.CharField(max_length=255, blank=False, verbose_name="Name")    
+    email = models.CharField(max_length=255, blank=False, verbose_name="Email")
+    subject = models.CharField(max_length=255, blank=False, verbose_name="Subject")
+    comments = models.TextField(max_length=2000, blank=False, verbose_name="Comments")

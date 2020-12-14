@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from Maggotty.forms import UserForm, UserProfileInfoForm, CreateEventForm, RegisterForm
+from Maggotty.forms import UserForm, UserProfileInfoForm, CreateEventForm, RegisterForm, ContactUsForm, FeedbackForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect, request
@@ -59,8 +59,7 @@ def home(request):
 def about(request):
     return render(request, "Maggotty/about.html")
 
-def contact(request):
-    return render(request, "Maggotty/contact.html")
+
 
 def donate(request):
     return render(request, "Maggotty/donate.html")
@@ -68,8 +67,6 @@ def donate(request):
 def faq(request):
     return render(request, "Maggotty/faq.html")
 
-def feedback(request):
-    return render(request, "Maggotty/feedback.html")
 
 def history(request):
     return render(request, "Maggotty/history.html")
@@ -209,6 +206,18 @@ def createevent(request):
         form = CreateEventForm()    
     return render(request,'Maggotty/createevent.html',{'form': form})
 
+def contact(request):
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():            
+            form.save()
+            messages.success(request, f'✔️ Email has been sent to the Maggotty High Alumni')
+            # send email
+            return redirect('home')
+    else:
+        form = ContactUsForm()    
+    return render(request,'Maggotty/contact.html',{'form': form})
+
 def eventdetails(request):
     return render(request, "Maggotty/eventdetails.html")
 
@@ -221,4 +230,16 @@ def mycart(request):
     current_user = request.user
     user_Orders = Order.objects.filter(username=current_user.username, ifPaid=False)
     return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
-    
+
+def feedback(request):    
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():            
+            form.save()
+            messages.success(request, f'✔️ Your feedback has been submitted!')
+            # send email
+            return redirect('home')
+    else:
+        form = FeedbackForm() 
+       
+    return render(request,'Maggotty/feedback.html',{'form': form})
