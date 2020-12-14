@@ -3,45 +3,54 @@
 Events page
 {% endblock %}
 {% block content %}
-
 <div class="container">
-    <div class="row row-content">
-        <div class="col col-sm order-sm-first col-md">
-            <small ><a href="{% url 'home' %}" class="redLink">Back to Home</a></small>
+  <div class="row row-content">
+    
+      <div class="col col-sm order-sm-first col-md">
+          <small ><a href="{% url 'home' %}" class="redLink">Back to Home</a></small>
+          {% if allEvents.all %}
             <h3>
                 These are the upcoming Maggotty High Alumni Association events.<br/>                
             </h3>
-            <p>                
-                To check out past events, go to <a class="redLink" href="{% url 'alleventslist' %}">Past events</a> page.
-                           
-                Want to create your own event ? Check out <a class="redLink" href="{% url 'createevent' %}">Create Event</a>.
-            </p>
-            <br/>   
-        </div>  
-    </div> 
-    <form action="" method="POST">
-    {% csrf_token %}
-    {% for record in allEvents %} 
-    <div class="card">
-        <h5 class="card-header text-white" style="background-color: #7a212e;">{{record.eventName}}</h5>      
-        <div class="card-body" style="background-color:lightgray;">
-          {% if record.fromDate == record.toDate %}
-            <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}}</h6>
           {% else %}
-            <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
+            <h3>
+              These are no upcoming Maggotty High Alumni Association events.<br/>
+            </h3>
           {% endif %}
-          <input type="hidden" name="eventID" value="{{record.id}}" />
-          <input type="hidden" name="eventName" value="{{record.eventName}}" />
-          <input type="hidden" name="ticket" value="{{record.ticket}}" />
-          <small class="redLink">{{record.startTime}} to {{record.endTime}}</small><br/>
-          <small class="redLink">Event Ticket Price : ${{record.ticket}}</small><br/>
-          <small class="redLink">Event Organizer : {{record.createdBy}}</small>
-          <p class="card-text">{{record.eventDesc}}</p> 
-          <button type="submit" name='recordID' class="btnYellow" value="{{record.id}}">Attend this event</button>        
-        </div>
+          <p>                
+              To check out past events, go to <a class="redLink" href="{% url 'alleventslist' %}">Past events</a> page.
+                         
+              Want to create your own event ? Check out <a class="redLink" href="{% url 'createevent' %}">Create Event</a>.
+          </p>
+          <br/>   
       </div>  
-    <br/>
-    {% endfor %}
-  </form>
-</div>               
+      
+  </div> 
+  <form action="" method="POST">
+  {% csrf_token %}
+  {% for record in allEvents %}    
+  <div class="card">
+      <h5 class="card-header text-white" style="background-color: #7a212e;">{{record.eventName}}</h5>      
+      <div class="card-body" style="background-color:lightgray;">
+        {% if record.fromDate == record.toDate %}
+          <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}}</h6>
+        {% else %}
+          <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
+        {% endif %}
+        <input type="hidden" name="eventID" value="{{record.id}}" />
+        <input type="hidden" name="eventName" value="{{record.eventName}}" />
+        <input type="hidden" name="ticket" value="{{record.ticket}}" />
+        <small class="redLink">{{record.startTime}} to {{record.endTime}}</small><br/>
+        <small class="redLink">Event Ticket Price : ${{record.ticket}}</small><br/>
+        <small class="redLink">Event Organizer : {{record.createdBy}}</small>
+        <p class="card-text">{{record.eventDesc}}</p> 
+        {% if user.is_authenticated %}
+          <button type="submit" name='recordID' class="btnYellow" value="{{record.id}}">Attend this event</button> 
+        {% endif %}                 
+      </div>
+    </div>  
+  <br/> 
+  {% endfor %}
+</form>
+</div> 
 {% endblock %}

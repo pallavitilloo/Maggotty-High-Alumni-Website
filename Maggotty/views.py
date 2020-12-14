@@ -176,23 +176,14 @@ def upcomingevents(request):
             current_order.ticketPrice = currEvent.ticket
             current_order.save()                         
             user_Orders = Order.objects.filter(username=current_user.username, ifPaid=False)
-            return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
-        # if request.POST.get('eventID') and request.POST.get('ticket') and request.POST.get('eventName'):
-        #     current_order = Order()
-        #     current_order.username= request.user.username
-        #     current_order.eventID = request.POST.get('eventID')
-        #     current_order.eventName = request.POST.get('eventName')
-        #     current_order.ticketPrice = request.POST.get('ticket')
-        #     current_order.save()  
-        #     current_user = request.user           
-        #     user_Orders = Order.objects.filter(username=current_user.username)
-        #     return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
+            return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})        
     else:
         today = date.today()
         after_ten_yrs = today.replace(year = today.year + 10)
         today = today.strftime('%Y-%m-%d')
         allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
-        return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
+        approvedEvents = allEvents.filter(isApproved=True)
+        return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents, "approvedEvents":approvedEvents})
 
     
 
