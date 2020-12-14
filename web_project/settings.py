@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Maggotty.context_processors.get_current_cart_to_context',
             ],
         },
     },
@@ -140,4 +141,5 @@ STATICFILES_DIRS = (
 # media files to be uploaded
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
 

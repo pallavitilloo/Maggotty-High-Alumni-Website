@@ -11,9 +11,11 @@ My Cart
     <div class="row">  
       <div class="col-8">          
         <div class="row">
+          {% if Orders.all %}
           <div class="col">
             <h5 class="mb-4">My Cart</h5>  
           </div>
+          {% endif %}
         </div>        
         {% for order in Orders %}
         <div class="row">
@@ -25,7 +27,14 @@ My Cart
           </div>
         </div>
         {% empty %}
-          <medium>Your cart is empty. <a href="{% url 'upcomingevents' %}" class='redLink'>Buy tickets </a>now!</medium>
+        <div class="row">
+          <div class="col-1">
+            <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i> 
+          </div>
+          <div class="col-11">
+            <h4>Your cart is empty. <a href="{% url 'upcomingevents' %}" class='redLink'> Buy tickets </a>now!</h4>
+          </div>
+        </div>
         {% endfor %}        
       </div>
       {% if Orders.all %}
@@ -99,12 +108,14 @@ My Cart
       {% endif %}
     </div>
     <hr/>
+    {% if Orders.all %}
     <div class="row">
       <div class="col">
         <p class="redLink"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
           tickets to your cart does not mean booking them.</p>
       </div>
-    </div>     
+    </div> 
+    {% endif %}    
   </div>
 </form>
 {% else %}
