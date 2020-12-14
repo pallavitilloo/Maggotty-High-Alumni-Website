@@ -26,6 +26,10 @@ class CreateEventForm(forms.ModelForm):
    
     class Meta:
         model = Event
+        widgets = {
+            'fromDate': forms.DateInput(attrs={'type':'date'}),
+            'toDate' : forms.DateInput(attrs={'type':'date'})
+        }
         fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','timings','ticket']        
     
 

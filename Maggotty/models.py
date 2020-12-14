@@ -15,8 +15,8 @@ class UserProfileInfo(models.Model):
 class Event(models.Model):
     eventName = models.CharField("Event Name", max_length=255, blank=True, help_text="Alphanumeric only")
     eventDesc = models.TextField("Event Description", max_length=1024, blank=True, null=True, help_text="Description of the event")
-    fromDate = models.DateTimeField("Start Date", help_text="MM/DD/YYYY")
-    toDate = models.DateTimeField("End Date", help_text="MM/DD/YYYY")
+    fromDate = models.DateField(blank=False)
+    toDate = models.DateField(blank=False)
     timings = models.CharField("Event Timings", max_length=255, help_text="Timings for the event")
     ticket = models.FloatField("Ticket Price", null=True, help_text="Price for the event")
     isApproved = models.BooleanField("Is Approved", default=False)
