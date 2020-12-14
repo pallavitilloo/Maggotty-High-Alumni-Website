@@ -4,29 +4,34 @@ Events page
 {% endblock %}
 {% block content %}
 
+
 <div class="container">
     <div class="row row-content">
         <div class="col col-sm order-sm-first col-md">
-            <h3>
-                These are the past Maggotty High Alumni Association events.<br/>                
-            </h3>
+          <small><a href="{% url 'home' %}" class="redLink">Back to Home</a></small>
+          <br/>
             <p>
-                To attend an event, check out our <a href="{% url 'upcomingevents' %}" class="redLink">Upcoming events</a>.
-                If you wish to create an event, please check out <a class="redLink" href="{% url 'createevent' %}">this</a> link.
+                <!-- To attend an event, check out our <a href="{% url 'upcomingevents' %}" class="redLink">Upcoming events</a>. -->
+                Want to create your own event ? Check out <a class="redLink" href="{% url 'createevent' %}">Create Event</a>.
             </p>
-            <br/>   
+            
         </div>  
     </div> 
     
     {% for record in allEvents %} 
     <div class="card">
         <h5 class="card-header text-white" style="background-color: #7a212e;">{{record.eventName}}</h5>      
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
+        <div class="card-body" style="background-color:lightgray;">
+          {% if record.fromDate == record.toDate %}
+            <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}}</h6>
+          {% else %}
+            <h6 class="card-subtitle mb-2 text-muted">{{record.fromDate}} - {{record.toDate}}</h6>
+          {% endif %}
           <small class="redLink">{{record.startTime}} to {{record.endTime}}</small><br/>
-          <small class="redLink">${{record.ticket}}</small><br/>
-          <small class="redLink">{{record.createdBy}}</small>
-          <p class="card-text">{{record.eventDesc}}</p>
+          <small class="redLink">Event Ticket Price : ${{record.ticket}}</small><br/>
+          <small class="redLink">Event Organizer : {{record.createdBy}}</small>
+          <p class="card-text">{{record.eventDesc}}</p> 
+                  
         </div>
       </div>  
     <br/>

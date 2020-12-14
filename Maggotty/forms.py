@@ -32,6 +32,11 @@ class CreateEventForm(forms.ModelForm):
             'startTime':forms.TimeInput(attrs={'type':'time'}),
             'endTime':forms.TimeInput(attrs={'type':'time'})
         }
-        fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','startTime','endTime','ticket']        
-    
+        fields = ['eventName', 'eventDesc', 'fromDate', 'toDate','startTime','endTime','ticket']       
+        def clean(self):
+            eventName = self.cleaned_data.get('eventName')
+
+            if len(eventName) < 25:
+                raise forms.ValidationError(_("Minimum characters required are 25."))
+            return eventName
 

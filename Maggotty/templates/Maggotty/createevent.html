@@ -12,7 +12,7 @@ Create a new event
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
-
+        
         <div class="col-md-10 col-xs-10 col-sm-10 ">
             <br />
             <!-- <h6 style="text-align:left;">
@@ -23,22 +23,30 @@ Create a new event
         </div>
     </div>
     <div class="row">
-        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        
+        <div class="col-md-10 col-xs-10 col-sm-10">
+            
+        </div>
         <div class="col-md-10 col-xs-10 col-sm-10">
             <form method="post" novalidate>
                 {% csrf_token %}
                 {% for hidden_field in form.hidden_fields %}
                 {{ hidden_field }}
-                {% endfor %}
+                {% endfor %}                
+                <small>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'upcomingevents' %}" class="redLink">Back to Events</a></small>
+                <br/>
+                <br/>
                 {% for field in form.visible_fields %}
                 <div class="form-group">
-                    <div class="container">
+                    <div class="container">                        
                         <div class="row">
-                            <div class="col-md-3 col-1 col-sm-1">
+                            <div class="col-md-3 col-12 col-sm-1">
+                                
                                 {{ field.label_tag }}
                             </div>
-                            <div class="col-md-9 col-1 col-sm-1">                                
-                                {% render_field field class="form-control" %}
+                            <div class="col-md-9 col-12 col-sm-1">  
+                                {% render_field field class="form-control" %}            
+                                                   
                                 <!-- {% if field.label == "From Date" or field.label == "To Date"  %}
 
                                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -48,8 +56,9 @@ Create a new event
                                     </div>
                                   </div>  
                                 {% endif %} -->
-                                {% if field.help_text %}
-                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                
+                                {% if field.label == 'Event Name' and form.errors %}
+                                    <small class="redLink">Event Name should be at least 25 characters long!</small>
                                 {% endif %}
                             </div>
                         </div>

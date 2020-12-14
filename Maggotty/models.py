@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from datetime import date
+
+@property
+def is_upcoming(self):
+    today = date.today().strftime('%Y-%m-%d')
+    nottoday = self.date.strftime('%Y-%m-%d')
+    if  today < nottoday:
+        return True
+    return False
 
 class UserProfileInfo(models.Model):
 
@@ -12,16 +21,18 @@ class UserProfileInfo(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Event(models.Model):
-    eventName = models.CharField("Event Name", max_length=255, blank=True, help_text="Alphanumeric only")
-    eventDesc = models.TextField("Event Description", max_length=1024, blank=True, null=True, help_text="Description of the event")
+    eventName = models.CharField("Event Name", max_length=255, blank=False)
+    eventDesc = models.TextField("Event Description", max_length=1024, blank=True, null=True)
     fromDate = models.DateField(blank=False)
     toDate = models.DateField(blank=False)
     startTime = models.TimeField()
     endTime = models.TimeField()
-    ticket = models.FloatField("Ticket Price", null=True, help_text="Price for the event")
+    ticket = models.FloatField("Ticket Price", null=True)
     isApproved = models.BooleanField("Is Approved", default=False)
-    createdBy = models.CharField("Created By", max_length=255)
+    createdBy = models.CharField("Created By", max_length=255, editable=False)
+
 
     def __str__(self):
         return self.eventName

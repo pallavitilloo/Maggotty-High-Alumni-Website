@@ -12,6 +12,7 @@ from django.contrib import messages
 from Maggotty.models import Event
 from django.db import models
 from django.views.generic import ListView, DetailView
+from datetime import date
 
 # class IndexView(ListView):
 #     template_name = 'Maggotty/index.html'
@@ -154,21 +155,29 @@ def mycart(request):
 #     return render(request, "Maggotty/event.html")
 
 def alleventslist(request):
-    allEvents = Event.objects.all()
+    today = date.today().strftime('%Y-%m-%d')
+    allEvents = Event.objects.filter(fromDate__range=["2010-01-01", today])
     return render(request, "Maggotty/alleventslist.html", {"allEvents": allEvents})
 
 def upcomingevents(request):
-    allEvents = Event.objects.all()
+    today = date.today()
+    after_ten_yrs = today.replace(year = today.year + 10)
+    today = today.strftime('%Y-%m-%d')
+    allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
     return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents})
 
 def createevent(request):
     if request.method == 'POST':
         form = CreateEventForm(request.POST)
         if form.is_valid():
+            current_user = request.user
+            instance = form.save(commit=False)
+            instance.createdBy = current_user.username
             form.save()
             messages.success(request, f'✔️ Event created')
             return redirect('home')
-    form = CreateEventForm()
+    else:
+        form = CreateEventForm()    
     return render(request,'Maggotty/createevent.html',{'form': form})
 
 def eventdetails(request):
