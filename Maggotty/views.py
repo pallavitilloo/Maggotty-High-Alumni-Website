@@ -124,11 +124,19 @@ def polls(request):
     polls = Poll.objects.all()
 
     if request.method == 'POST':
-        answer_1 = request.POST['1']
-        answer_2 = request.POST['2']
+        if '1' in request.POST and '2' in request.POST:
+            answer_1 = request.POST['1']
+            answer_2 = request.POST['2']
+        else:
+            answer_1, answer_2 = None, None
+
         answer_3 = request.POST['opinion']
-        question_1 = polls[0].question
-        question_2 = polls[1].question
+        if polls:
+            question_1 = polls[0].question
+            question_2 = polls[1].question
+        else:
+            question_1, question_2 = None, None
+            
         user_poll = UserOpinions(question_1=question_1, question_2=question_2, answers_1=answer_1, answers_2=answer_2, username=request.user, opinion=answer_3)
         user_poll.save()
     
