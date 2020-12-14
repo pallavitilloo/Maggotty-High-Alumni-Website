@@ -93,7 +93,7 @@ def register(request):
             message = settings.REGISTRATION_EMAIL_BODY
             email_from = settings.EMAIL_HOST_USER 
             recipient_list = [user.email] 
-            # send_mail(subject, message, email_from, recipient_list) 
+            send_mail(subject, message, email_from, recipient_list) 
 
             return redirect('home')
             return redirect('login')
@@ -210,9 +210,13 @@ def contact(request):
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():            
-            form.save()
+            feedback = form.save()
             messages.success(request, f'✔️ Email has been sent to the Maggotty High Alumni')
-            # send email
+            subject = feedback.subject
+            message = feedback.comments
+            email_from = feedback.email 
+            recipient_list = [settings.EMAIL_HOST_USER]
+            send_mail(subject, message, email_from, recipient_list) 
             return redirect('home')
     else:
         form = ContactUsForm()    
