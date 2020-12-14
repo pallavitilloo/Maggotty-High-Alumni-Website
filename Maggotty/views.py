@@ -96,7 +96,7 @@ def register(request):
             message = settings.REGISTRATION_EMAIL_BODY
             email_from = settings.EMAIL_HOST_USER 
             recipient_list = [user.email] 
-            send_mail(subject, message, email_from, recipient_list) 
+            # send_mail(subject, message, email_from, recipient_list) 
 
             return redirect('home')
             return redirect('login')
