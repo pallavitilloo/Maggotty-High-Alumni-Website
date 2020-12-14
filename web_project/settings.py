@@ -24,39 +24,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'maggottyhighalumni@gmail.com' 
 EMAIL_HOST_PASSWORD = 'maggotty123$'
 EMAIL_PORT = 587
-REGISTRATION_EMAIL_BODY = '''<html><head>
-	<title></title>
-	<link href="https://svc.webspellchecker.net/spellcheck31/lf/scayt3/ckscayt/css/wsc.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<p><span style="font-family:arial,helvetica,sans-serif">Congratulations ! You have successfully registered for the Maggotty High Alumni website.<br />
-&nbsp;<br />
-You now have unlimited access to all of this and more&hellip;<br />
-&nbsp;</span></p>
-
-<ul>
-	<li>
-	<p><span style="font-family:arial,helvetica,sans-serif">Create events to meet your fellow classmates</span></p>
-	</li>
-	<li>
-	<p><span style="font-family:arial,helvetica,sans-serif">Register for upcoming events happening near you</span></p>
-	</li>
-	<li>
-	<p><span style="font-family:arial,helvetica,sans-serif">Make donations and help your alma mater</span></p>
-	</li>
-	<li>
-	<p><span style="font-family:arial,helvetica,sans-serif">Upload stories, pictures and more&hellip;</span></p>
-	</li>
-</ul>
-
-<p><span style="font-family:arial,helvetica,sans-serif">&nbsp;<br />
-Check out the <a href="http://localhost:8000/home/">Maggotty High Alumni website</a> and sign into your account.<br />
-&nbsp;<br />
-Regards,<br />
-Maggotty High Alumni Association<br />
-Contact us: <a href="mailto:maggottyhighalumni@gmail.com">maggottyhighalumni@gmail.com</a></span></p>
-</body>
-</html>'''
+REGISTRATION_EMAIL_BODY = '''Congratulations ! You have successfully registered for the Maggotty High Alumni website.
+                             
+                             You now have unlimited access to all of this and more...
+                              - Create events to meet your fellow classmates</span></p>
+	                          - Register for upcoming events happening near you</span></p>
+	                          - Make donations and help your alma mater</span></p>
+	                          - Upload stories, pictures and more&hellip;</span></p>
+                            Check out the Maggotty High Alumni website and sign into your account to access these benefits
+                            
+                            Regards,
+                            Maggotty High Alumni Association'''
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/

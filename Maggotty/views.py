@@ -59,8 +59,6 @@ def home(request):
 def about(request):
     return render(request, "Maggotty/about.html")
 
-
-
 def donate(request):
     return render(request, "Maggotty/donate.html")
 
@@ -86,8 +84,8 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user.email
+            # profile = profile_form.save(commit=False)
+            # profile.user.email = user.email
             messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
             subject = "Registration successful!"
             message = settings.REGISTRATION_EMAIL_BODY
@@ -130,7 +128,6 @@ def contributions(request):
     contributions = Contribute.objects.all()[:3]
     return render(request, "Maggotty/contributions.html", {"contributions": contributions})
 
-
 def polls(request):
     # retrieve all the poll questions from the database
     polls = Poll.objects.all()
@@ -157,10 +154,6 @@ def polls(request):
 def approvedPolls(request):
     polls = UserOpinions.objects.filter(approved=True)
     return render(request, "Maggotty/allpolls.html", {"polls": polls})
-
-
-# def event(request):
-#     return render(request, "Maggotty/event.html")
 
 def alleventslist(request):
     today = date.today().strftime('%Y-%m-%d')
@@ -189,8 +182,6 @@ def upcomingevents(request):
         allEvents = Event.objects.filter(fromDate__range=[today,after_ten_yrs])
         approvedEvents = allEvents.filter(isApproved=True)
         return render(request, "Maggotty/upcomingevents.html", {"allEvents": allEvents, "approvedEvents":approvedEvents})
-
-    
 
 def createevent(request):
     if request.method == 'POST':
