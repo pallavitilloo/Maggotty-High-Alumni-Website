@@ -1,4 +1,5 @@
 from django.db import models
+# from django.contrib.auth import models as authModels
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
@@ -11,8 +12,6 @@ class UserProfileInfo(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)    
     def __str__(self):
         return self.user.username
-
-
 
 class Event(models.Model):
     eventName = models.CharField("Event Name", max_length=255, blank=False)

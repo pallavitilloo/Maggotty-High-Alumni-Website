@@ -8,5 +8,5 @@ def get_current_cart_to_context(request):
     no_of_visitors = User.objects.all().count()    
     return {
         'CART_COUNT' : cart_items,    
-        'VISITORS' : no_of_visitors
+        'VISITORS' : no_of_visitors        
     }

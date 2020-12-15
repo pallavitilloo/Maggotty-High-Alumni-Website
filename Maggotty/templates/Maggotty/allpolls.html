@@ -8,7 +8,7 @@ Approved Opinon Polls
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
             <h3>
-                These are the past Maggotty High Alumni Association User Opinion Polls.<br/>
+                These are the Maggotty High Alumni Association User Opinion Polls.<br/>
                 
             </h3>
             <p>
@@ -17,8 +17,7 @@ Approved Opinon Polls
             <br/>   
         </div>  
     </div>    
-    <!-- show all uploaded contributions -->
-    {% if polls %}
+    <!-- show all uploaded contributions -->  
     {% for poll in polls %}
     <div class="row row-content align-items-center">
         <div class="col col-sm order-sm-first col-md">
@@ -27,9 +26,6 @@ Approved Opinon Polls
         </div> 
     </div> 
     <br/> 
-    {% endfor %}
-    {% else %}
-        <h3 style="text-align: center;">No polls have been approved yet...Please try again later</h3>
-    {% endif %}
+    {% endfor %}    
 </div>               
 {% endblock %}

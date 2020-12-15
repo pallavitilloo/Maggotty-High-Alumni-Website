@@ -5,9 +5,14 @@ Opinion Polls
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
-        <div class="row" style="padding-bottom: 15px;">
-            <h4>Kindly Give Your Thoughts in the Poll Below...OR </h4>
-            <h4><a href="{% url 'approved_polls' %}" style="margin-left: 20px;">View Polls</a></h4>
+        <div class="row">
+            <h4>You can create a Poll here !</h4>
+            <br/>
+            <br/>
+            
+        </div>
+        <div class="row">
+            <p>Or if you want to participate in any polls, click <a class="redLink" href="{% url 'approved_polls' %}">here</a></p>
         </div>
         <div class="jumbotron" style="padding: 10px 20px;">
             <form action="" method="post">
@@ -19,7 +24,7 @@ Opinion Polls
                     <br>
                 {% endfor %}
                 <br><br>
-                <span><h6>Any additional opinions? Comment below...</h6></span>
+                <span><h6>Write about the poll you want to create...</h6></span>
                 <textarea name="opinion" id="opinion" cols="60" rows="5" style="width: 70%;" required></textarea>
                 <br> <br>
                 <p><input type="submit" value="Submit" class="btn"></p>

@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from Maggotty.forms import UserForm, UserProfileInfoForm, CreateEventForm, RegisterForm, ContactUsForm, FeedbackForm
+from Maggotty.forms import UserProfileInfoForm, CreateEventForm, RegisterForm, ContactUsForm, FeedbackForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect, request
@@ -15,37 +15,8 @@ from django.views.generic import ListView, DetailView
 from datetime import date
 from django.conf import settings
 from django.core.mail import send_mail
-
-# class IndexView(ListView):
-#     template_name = 'Maggotty/index.html'
-#     context_object_name = 'event_list'
-
-#     def get_queryset(self):
-#         return Event.objects.all()
-
-# class EventDetailView(DetailView):
-#     model = Event
-#     template_name = 'Maggotty/eventdetails.html'
-
-# def edit(request, pk, template_name='Maggotty/edit.html'):
-#     event = get_object_or_404(Event, pk=pk)
-#     # form = CreateEventForm(request.POST or None, instance=post)
-#     form = CreateEventForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         return redirect('home')
-#     return render(request, template_name, {'form':form})
-
-# def delete(request, pk, template_name='Maggotty/confirm_delete.html'):
-#     event = get_object_or_404(Event, pk=pk)
-#     if request.method=='POST':
-#         event.delete()
-#         return redirect('home')
-#     return render(request, template_name, {'object':event})
-
-
-
 from Maggotty.models import Contribute, Poll, UserOpinions
+
 
 def paystatus(request):        
     current_user = request.user    
@@ -84,8 +55,8 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            # profile = profile_form.save(commit=False)
-            # profile.user.email = user.email
+            profile = profile_form.save(commit=False)
+            profile.user = user
             messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
             subject = "Registration successful!"
             message = settings.REGISTRATION_EMAIL_BODY
@@ -238,3 +209,12 @@ def feedback(request):
         form = FeedbackForm() 
        
     return render(request,'Maggotty/feedback.html',{'form': form})
+
+# def login(request):
+#     username = request.POST['username']
+#     password = request.POST['password']
+#     user = authenticate(username = username, password = password)
+#     if user is not None:
+#         login(request, user)
+#     else:
+#         return render(request, "Maggotty/home.html")
