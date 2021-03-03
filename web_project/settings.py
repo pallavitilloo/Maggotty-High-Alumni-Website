@@ -155,7 +155,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-
+AUTH_PROFILE_MODULE = 'Maggotty.UserProfileInfo'
 
 # media files to be uploaded
 MEDIA_ROOT = BASE_DIR / 'media'

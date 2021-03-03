@@ -1,35 +1,19 @@
 from django import forms
-from Maggotty.models import UserProfileInfo, Poll, Event, ContactUs, Feedback
+from Maggotty.models import Poll, Event, ContactUs, Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms.widgets import EmailInput, PasswordInput
+from django.db import models
 
-class RegisterForm(forms.ModelForm):    
-    password = forms.CharField(widget=forms.PasswordInput())
-        
-
-    class Meta():
-        model = User
-        fields = ('username', 'password', 'email')
-        
-# class UserForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput())
+class RegisterForm(UserCreationForm):    
+    username = forms.CharField(max_length=100)    
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    email = forms.CharField(widget=EmailInput)
     
-#     class Meta():
-#         model = User
-#         fields = ('username', 'password', 'email')
-
-class UserProfileInfoForm(forms.ModelForm):
-    class Meta():
-        model = UserProfileInfo
-        fields = ('portfolio_site', 'profile_pic')
-
-
-class DateForm(forms.Form):
-    date = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],
-
-    )
-
+    class Meta:
+        model = User
+        fields = ["username", "password1","password2","first_name","last_name","email"]
 
 class CreateEventForm(forms.ModelForm):
 

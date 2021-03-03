@@ -1,9 +1,9 @@
 from django.contrib import admin
-from Maggotty.models import UserProfileInfo, User
+from Maggotty.models import User
 from Maggotty.models import Event, Contribute, Poll, UserOpinions
 
 # Register your models here.
-admin.site.register(UserProfileInfo)
+# admin.site.register(UserProfileInfo)
 
 # register the contribute model
 admin.site.register(Contribute)

@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from Maggotty.forms import UserProfileInfoForm, CreateEventForm, RegisterForm, ContactUsForm, FeedbackForm
+from Maggotty.forms import CreateEventForm, ContactUsForm, FeedbackForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect, request
@@ -20,8 +20,7 @@ from Maggotty.models import Contribute, Poll, UserOpinions
 
 def paystatus(request):        
     current_user = request.user    
-    Order.objects.filter(username=current_user.username, ifPaid=False).update(ifPaid=True)
-    # return render(request, "Maggotty/mycart.html", {"Orders": user_Orders})
+    Order.objects.filter(username=current_user.username, ifPaid=False).update(ifPaid=True)    
     return render(request, "Maggotty/paystatus.html")
 
 def home(request):
@@ -36,7 +35,6 @@ def donate(request):
 def faq(request):
     return render(request, "Maggotty/faq.html")
 
-
 def history(request):
     return render(request, "Maggotty/history.html")
 
@@ -46,43 +44,56 @@ def mission(request):
 def news(request):
     return render(request, "Maggotty/news.html")
 
-def register(request):
-    registered = False
-    if request.method == 'POST':
-        user_form = RegisterForm(data=request.POST)
-        profile_form = UserProfileInfoForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
-            subject = "Registration successful!"
-            message = settings.REGISTRATION_EMAIL_BODY
-            email_from = settings.EMAIL_HOST_USER 
-            recipient_list = [user.email] 
-            send_mail(subject, message, email_from, recipient_list) 
+# def register(request):
+#     registered = False
+#     if request.method == 'POST':
+#         user_form = RegisterForm(data=request.POST)
+#         profile_form = UserProfileInfoForm(data=request.POST)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save()
+#             user.set_password(user.password)
+#             user.save()
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             messages.success(request, f'✔️ User account created successfully for {user}. You can login and access your account now!')
+#             subject = "Registration successful!"
+#             message = settings.REGISTRATION_EMAIL_BODY
+#             email_from = settings.EMAIL_HOST_USER 
+#             recipient_list = [user.email] 
+#             send_mail(subject, message, email_from, recipient_list) 
 
-            return redirect('home')
-            return redirect('login')
-            if 'profile_pic' in request.FILES:
-                print('found it')
-                profile.profile_pic = request.FILES['profile_pic']
-            profile.save()
-            registered = True
-        else:
-            print(user_form.errors, profile_form.errors)
-    else:
-        user_form = RegisterForm()
-        profile_form = UserProfileInfoForm()
+#             return redirect('home')
+#             return redirect('login')
+#             if 'profile_pic' in request.FILES:
+#                 print('found it')
+#                 profile.profile_pic = request.FILES['profile_pic']
+#             profile.save()
+#             registered = True
+#         else:
+#             print(user_form.errors, profile_form.errors)
+#     else:
+#         user_form = RegisterForm()
+#         profile_form = UserProfileInfoForm()
+#     return render(request, 'Maggotty/register.html',
+#                   {'user_form': user_form,
+#                            'profile_form': profile_form,
+#                            'registered': registered})
+
+def register(request):
+    user_form = RegisterForm(request.POST)
+    # profile_form = UserProfileInfoForm(data=request.POST)
+    if user_form.is_valid():
+        user_form.save()
+        username = user_form.cleaned_data.get('username')
+        password = user_form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('home')        
     return render(request, 'Maggotty/register.html',
-                  {'user_form': user_form,
-                           'profile_form': profile_form,
-                           'registered': registered})
+                  {'user_form': user_form})
 
 def contribute(request):
-    """Handle Content Upload"""
+    # Handle Content Upload
     if request.method == 'POST':
         contribute_title = request.POST['title']
         contribute_img = request.FILES['filename']
@@ -127,7 +138,7 @@ def polls(request):
     return render(request, "Maggotty/polls.html", {"polls": polls, "message": message})
 
 def approvedPolls(request):
-    polls = UserOpinions.objects.all() # .filter(approved=True)
+    polls = UserOpinions.objects.all() 
     return render(request, "Maggotty/allpolls.html", {"polls": polls})
 
 def alleventslist(request):
@@ -206,19 +217,9 @@ def feedback(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():            
             form.save()
-            messages.success(request, f'✔️ Your feedback has been submitted!')
-            # send email
+            messages.success(request, f'✔️ Your feedback has been submitted!')            
             return redirect('home')
     else:
         form = FeedbackForm() 
        
     return render(request,'Maggotty/feedback.html',{'form': form})
-
-# def login(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(username = username, password = password)
-#     if user is not None:
-#         login(request, user)
-#     else:
-#         return render(request, "Maggotty/home.html")
